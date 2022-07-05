@@ -1,0 +1,38 @@
+[
+    {
+        "id":1, 
+        "nombre":"Queso Afuega'l Pitu (Rojo)", 
+        "precio":4.5, 
+        "descripcion":"El queso Afuega'l Pitu (Rojo) es un queso de gran personalidad, con una textura única en sabor con notas un tanto ácidas, que además, en este caso tienden a picantes"
+    },
+    {
+        "id":2, 
+        "nombre":"Queso Afuega'l Pitu (Blanco)", 
+        "precio":4.5, 
+        "descripcion":"El queso Afuega'l Pitu (Blanco) es un queso de gran personalidad, con una textura única y sabor con notas un tanto ácidas."
+    },
+    {
+        "id":3, 
+        "nombre":"Queso de cabrales DOP", 
+        "precio":10.5, 
+        "descripcion":"El queso de cabrales DOP se elabora artesanalmente con leche de vaca cruda, tres leches, o mezcla de leche de vaca y cabra. Se cura en las cuevas del Parque Natural de Picos de Europa."
+    },
+    {
+        "id":4, 
+        "nombre":"Fabas asturianas", 
+        "precio":15.75, 
+        "descripcion":"Seleccionadas con gran cuidado, resultan ideales para fabada, potes y otros platos típicos de la gatronimía asturiana"
+    },
+    {
+        "id":5, 
+        "nombre":"Cachopo de ternera asturiana con jamón y queso de oscos", 
+        "precio":8.0, 
+        "descripcion":"Cachopo elaborado con las mejores carnes de Ternera Asturiana. Se envía sin rebozar en paquetes al vacío de 2 unidades."
+    },
+    {
+        "id":6, 
+        "nombre":"Sidra natural ecológica (75 cl.)", 
+        "precio":2.75, 
+        "descripcion":"Sidra natural de Asturias de producción ecológica. Ideal para escanciar."
+    }
+]

@@ -1,0 +1,29 @@
+// Coloque su configuración en este archivo para sobrescribir la configuración predeterminada.
+{
+    "workbench.colorTheme": "Visual Studio Light",
+    "window.zoomLevel": 2,
+    "git.ignoreMissingGitWarning": true,
+    "extensions.ignoreRecommendations": false,
+
+    "markdown.styles":["css/GitHub2.css", "css/estilos.css"],
+
+    // Page Option. Border Top. units: mm, cm, in, px
+    "markdown-pdf.margin.top": "2cm",
+
+    // Page Option. Border bottom. units: mm, cm, in, px
+    "markdown-pdf.margin.bottom": "2cm",
+
+    // pdf only. HTML template for the print header.
+    "markdown-pdf.headerTemplate":
+    "<div style=\"margin-top: 20px; width: 100%; border-bottom: 1px solid; border-color:#CCC; color: #CCC; font-size: 10px; margin-left: 1cm; margin-right: 1cm;\"><div style=\"float:left;\">Despliegue de Aplicaciones Web</div> <div style=\"float:right;\">Nacho Iborra, May Calle.</div></div>",
+
+    // pdf only. HTML template for the print footer.
+    "markdown-pdf.footerTemplate":
+    "<div style=\"margin-bottom: 20px; width: 100%; border-top: 1px solid; border-color:#CCC; color: #CCC; font-size: 10px; margin-left: 1cm; margin-right: 1cm;\"><div align=\"center\">Página <span class='pageNumber'></span> de <span class='totalPages'></span></div></div>",
+
+    // Set the style file name. for example: github.css, monokai.css ... https://github.com/isagalaev/highlight.js/tree/master/src/styles
+    "markdown-pdf.highlightStyle": "tomorrow.css",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "editor.minimap.enabled": false,
+    "editor.detectIndentation": false
+}

@@ -1,0 +1,33 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Libros | Editar{% endblock %}
+
+{% block contenido %}
+
+    <h1>Edición de libro existente</h1>
+
+    {% if (libro) %}
+        <form action="/libros/{{ libro.id }}" method="post">
+            <input type="hidden" name="_method" value="put" />
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" name="titulo" 
+                    placeholder="Título del libro..." value="{{ libro.titulo }}"/>
+            </div>
+            <div class="form-group">
+                <label for="editorial">Editorial:</label>
+                <input type="text" class="form-control" name="editorial"
+                    placeholder="Editorial del libro..." value="{{ libro.editorial }}"/>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="text" class="form-control" name="precio"
+                    placeholder="Precio del libro..." value="{{ libro.precio }}"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    {% else %}
+        <div class="alert alert-danger">Libro no especificado</div>
+    {% endif %}
+
+{% endblock %}

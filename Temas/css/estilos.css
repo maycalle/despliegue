@@ -1,0 +1,18 @@
+sup
+{
+    float:right;
+}
+body
+{
+    text-align: justify;
+}
+h1, h2, h3, h4, h5, h6
+{
+    text-align: left;
+}
+p.centrado 
+{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
