@@ -26,6 +26,7 @@ h1
     border-radius: 20px;
     text-align: center;
     height: 100%;
+    color: black;
 }
 
 .celda a, .celda a:hover, .celda a:link, .celda a:visited
