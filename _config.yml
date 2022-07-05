@@ -1,10 +1,10 @@
-title: Desarrollo de videojuegos con Phaser
+title: Despliegue de aplicaciones web
 description: > # this means to ignore newlines until "baseurl:"
-  Curso de desarrollo de videojuegos con Phaser. Escrito por Nacho Iborra
-  profesor de ciclos formativos de Formación Profesional en el 
+  Módulo perteneciente al 2º Curso de CFGS de DAW. Escrito por Nacho Iborra y May Calle
+  profesores de ciclos formativos de Formación Profesional en el 
   I.E.S. San Vicente (San Vicente del Raspeig, Alicante, España)
-baseurl: "/phaser" # the subpath of your site, e.g. /blog
-url: "http://nachoiborraIES.github.io" # the base hostname & protocol for your site
+baseurl: "/despliegue" # the subpath of your site, e.g. /blog
+url: "http://maycalle.github.io" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
