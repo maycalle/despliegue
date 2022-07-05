@@ -1,6 +1,6 @@
 body
 {
-    background-color: #8ecae6;
+    background-color: #8a4fff;
 }
 
 .titulo
@@ -17,7 +17,7 @@ h1
 
 .celda
 {
-    background-color: #219ebc;
+    background-color: #e5ecf4;
     border-radius: 20px;
     text-align: center;
     height: 100%;
@@ -27,7 +27,7 @@ h1
 {
     display:block;
     margin: 5px 10%;
-    background-color: #023047;
+    background-color: #c3bef7;
     text-decoration: none;
     color: white;
     border-radius: 5px;
@@ -35,13 +35,13 @@ h1
 
 .celda a.ejercicios
 {
-    background-color: #BBB;
+    background-color: #effffa;
     color: black;
 }
 
 .pie 
 {
-    background-color: #219ebc;
+    background-color: #e5ecf4;
     color: black;
     position: fixed;
     bottom: 0;
