@@ -2,17 +2,14 @@ body
 {
     background-color: #8a4fff;
     color: white;
-    text-align: justify;
+   
 }
 
 .titulo
 {
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.titulo img {
-    margin: 20px;
+    text-align: justify;
 }
 
 h1
