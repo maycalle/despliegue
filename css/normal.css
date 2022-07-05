@@ -10,6 +10,10 @@ body
     margin-bottom: 20px;
 }
 
+.titulo img {
+    margin: 20px;
+}
+
 h1
 {
     margin-top: 20px;
