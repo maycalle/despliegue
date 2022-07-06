@@ -37,7 +37,7 @@ h1
     height: 100%;
     color: black;
     border: 1px solid #8a4fff;
-    box-shadow: 3px 3px #8a4fff;
+    box-shadow: 5px 10px #8a4fff;
 }
 
 .celda a, .celda a:hover, .celda a:link, .celda a:visited
