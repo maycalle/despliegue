@@ -1,7 +1,7 @@
 // Coloque su configuración en este archivo para sobrescribir la configuración predeterminada.
 {
     "workbench.colorTheme": "Visual Studio Light",
-    "window.zoomLevel": 2,
+    "window.zoomLevel": 1,
     "git.ignoreMissingGitWarning": true,
     "extensions.ignoreRecommendations": false,
 
