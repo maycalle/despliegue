@@ -55,7 +55,7 @@ La estructura de carpetas y archivos creada por el comando `nest` tiene una seri
 * Un controlador de ejemplo, llamado `app.controller.ts`, con una ruta definida hacia la raíz de la aplicación.
 * El archivo `main.ts`, que define la inicialización de la aplicación Crea una instancia del módulo principal `AppModule`, y se queda escuchando por un puerto determinado (que se puede modificar en este mismo archivo). Define para ello una función asíncrona, que luego se lanza para poner en marcha todo:
 
-```typescript
+```js
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
@@ -72,11 +72,6 @@ El asistente de creación del proyecto lo habrá dejado todo preparado, con las 
 
 ```
 npm run start
-```
-
-o con :dev que nos permite recompilar automáticamente cuando guardamos un archivo. 
-```
-npm run start --watch
 ```
 
 Si intentamos acceder a `http://localhost:3000` veremos un mensaje de bienvenida proporcionado por el módulo principal ("Hello World!").
@@ -100,7 +95,7 @@ De hecho, nuestro módulo principal `app.module.ts` cuenta con un servicio asoci
 
 Volvamos al tema de los módulos. Un módulo básicamente es una clase TypeScript anotada con el decorador `@Module`, que proporciona una serie de metadatos para construir la estructura de la aplicación. Como ya hemos visto, toda aplicación Nest tiene al menos un módulo raíz o *root*, el archivo `app.module.ts` explicado anteriormente, que sirve de punto de entrada a la aplicación, de forma similar a como funciona Angular.
 
-```typescript
+```js
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -124,7 +119,7 @@ nest g module nombre_modulo
 
 Se creará una carpeta `nombre_modulo` dentro de la carpeta `src`, y se añadirá la correspondiente referencia en la sección `imports` del módulo principal `AppModule`. Por ejemplo, si creamos un módulo llamado `contacto`, se creará la carpeta `contacto`, y la sección `imports` del módulo principal quedará así (notar que a la clase que se genera se le añade el sufijo "Module" automáticamente):
 
-```typescript
+```js
 @Module({
     imports: [ContactoModule],
     ...
@@ -139,18 +134,12 @@ Del mismo modo, podemos generar controladores y servicios, con estos comandos:
 nest g controller nombre_controlador
 nest g service nombre_servicio
 ```
-Otra posibilidad para generar los controladores y servicios es usando su alias: 
-
-```
-nest g co nombre_controlador
-nest g s nombre_servicio
-```
 
 Si seguimos con el caso anterior, podemos crear un controlador llamado `contacto` y un servicio con el mismo nombre. Esto generará respectivamente los archivos `src/contacto/contacto.controller.ts` y `src/contacto/contacto.service.ts` en nuestro proyecto.
 
 Al seguir estos pasos, el propio módulo `contacto.module.ts` tendrá ya registrados su controlador y servicio, con lo que está ya todo conectado para poder empezar a trabajar:
 
-```typescript
+```js
 import { Module } from '@nestjs/common';
 import { ContactoController } from './contacto.controller';
 import { ContactoService } from './contacto.service';
@@ -189,7 +178,7 @@ nest g interface contacto/interfaces/contacto
 
 Esto creará un archivo `src/contacto/interfaces/contacto.interface.ts`. Podemos editarlo para definir qué campos va a tener un objeto de este tipo:
 
-```typescript
+```js
 export interface Contacto {
   id: string;
   nombre: string;
@@ -197,11 +186,10 @@ export interface Contacto {
   telefono: string;
 }
 ```
-> **Nota**: Si queréis aplicar alguna validación a los campos creados en la interfaz de arriba, podéis usar la clase class-validator que nos permite verificar campos como @IsEmail(), @IsNotEmpty(), etc. Ver más info [aquí](https://docs.nestjs.com/techniques/validation#auto-validation).
 
 Esta interfaz se puede incorporar al servicio o servicios que vayan a hacer uso de estos datos. Por ejemplo, en el servicio de contactos (archivo `src/contacto/contacto.service.ts`) podemos definir un atributo que sea un array de objetos de la interfaz `Contacto`, importando previamente dicha interfaz:
 
-```typescript
+```js
 import { Injectable } from '@nestjs/common';
 import { Contacto } from './interfaces/contacto/contacto.interface';
 
@@ -219,7 +207,7 @@ nest g class contacto/dto/ContactoDto
 
 Esto creará la clase `ContactoDto` en el archivo `src/contacto/dto/contacto-dto.ts`. Podemos definir dentro campos similares a los de la interfaz, ya que en principio se enviarán cliente y servidor los mismos campos aproximadamente que luego se van a almacenar para cada objeto. En el caso del DTO, podemos definir los campos como `readonly`, ya que son de sólo lectura (se envían al servidor para que los recoja y almacene):
 
-```typescript
+```js
 export class ContactoDto {
     readonly nombre: string;
     readonly edad: number;
@@ -229,7 +217,7 @@ export class ContactoDto {
 
 > **Ejercicios propuestos**
 > 
-> **2.** Sobre el proyecto anterior, crea ahora la interfaz `tarea` en la subcarpeta `interfaces`, con el comando `nest g itf tarea/interfaces/tarea`. Define los siguientes campos para cada tarea que vamos a gestionar:
+> **2.** Sobre el proyecto anterior, crea ahora la interfaz `tarea` en la subcarpeta `interfaces`, con el comando `nest g interface tarea/interfaces/tarea`. Define los siguientes campos para cada tarea que vamos a gestionar:
 > 
 > * Un `id` de tipo texto
 > * El `nombre` de la tarea (texto)
@@ -238,7 +226,7 @@ export class ContactoDto {
 > 
 > Añade un array de tareas (objetos de la interfaz `Tarea` que acabas de crear) en el servicio de la tarea (`src/tarea/tarea.service.ts`).
 > 
-> Después, crea un DTO llamado `TareaDto` con el comando `nest g cl tarea/dto/TareaDto`. Define dentro los mismos campos que hemos definido para la interfaz (salvo el *id*), de tipo *sólo lectura*.
+> Después, crea un DTO llamado `TareaDto` con el comando `nest g class tarea/dto/TareaDto`. Define dentro los mismos campos que hemos definido para la interfaz (salvo el *id*), de tipo *sólo lectura*.
 
 
 ### 3.4.3. Más sobre los controladores
@@ -247,7 +235,7 @@ Los controladores en Nest.js se encargan de gestionar las peticiones y respuesta
 
 Ya hemos visto cómo crear controladores en Nest, y que queden asociados a un módulo previamente creado. Suponiendo el controlador de `contacto` del ejemplo anterior, su estructura básica al crearse es la siguiente:
 
-```typescript
+```js
 import { Controller } from '@nestjs/common';
 
 @Controller('contacto')
@@ -266,7 +254,7 @@ Para gestionar estas peticiones, se deben definir unos métodos en el controlado
 
 Por ejemplo, así podríamos definir *handlers* de tipo `@Get` para obtener un listado general, y un dato a partir de su *id*, respectivamente. Deberemos importar el decorador junto con el resto de elementos necesarios del paquete `@nestjs/common`.
 
-```typescript
+```js
 import { Controller, Get, Param } from '@nestjs/common';
 
 @Controller('contacto')
@@ -290,7 +278,7 @@ En el caso del segundo *handler*, utilizamos un decorador `@Param` para acceder 
 
 A la hora de emitir una respuesta, deberemos devolver (`return`) un resultado. Nest.js serializa automáticamente objetos JavaScript a formato JSON, mientras que si enviamos un tipo simple (por ejemplo, un entero, o una cadena de texto), lo envía como texto plano. Por lo tanto, normalmente no tendremos que preocuparnos por esta tarea. Podemos devolver algo como esto:
 
-```typescript
+```js
 // GET /contacto
 @Get()
 listar() {
@@ -306,7 +294,7 @@ Para trabajar con peticiones de tipo POST, utilizaremos el decorador `@Body` par
 
 Lo más habitual es crear una subcarpeta *dto* dentro del controlador que lo vaya a utilizar, con la clase dentro. En nuestro caso, ya hemos creado previamente nuestro DTO en `src/contacto/dto/contacto.dto.ts`, con la información que se enviará del contacto. Recordemos su estructura:
 
-```typescript
+```js
 export class CrearContactoDto {
     readonly nombre: string;
     readonly edad: number;
@@ -316,7 +304,7 @@ export class CrearContactoDto {
 
 Podemos importar este DTO desde el controlador, y utilizarlo en los *handlers* de tipo POST que lo requieran:
 
-```typescript
+```js
 import { Controller, Get, Post, Body, Param } 
     from '@nestjs/common';
 import { ContactoDto } from './dto/contacto-dto/contacto-dto';
@@ -339,7 +327,7 @@ export class ContactoController {
 
 Del mismo modo se definen los *handlers* para las operaciones PUT y DELETE. En el caso de PUT, también será necesario utilizar un DTO para recoger los datos de la petición. Puede ser el mismo que para la inserción, si se van a enviar los mismos datos.
 
-```typescript
+```js
 // PUT /contacto/:id
 @Put(':id')
 actualizar(@Param('id') id: string, 
@@ -358,7 +346,7 @@ borrar(@Param('id') id: string) {
 
 Por defecto, los manejadores o *handlers* en Express devuelven automáticamente un código 200 junto con la respuesta, salvo en el caso de peticiones POST, donde se devuelve un estado 201. Si queremos devolver otro estado diferente, podemos utilizar el decorador `@HttpCode` en el encabezado del *handler*, indicando el código a devolver:
 
-```typescript
+```js
 @Post
 @HttpCode(204)
 crear() {
@@ -368,7 +356,7 @@ crear() {
 
 Además, también podemos emplear el decorador `@Header` para enviar cabeceras de respuesta (una vez por cada cabecera), indicando en cada caso el nombre de la cabecera y su valor asociado.
 
-```typescript
+```js
 @Post
 @HttpCode(204)
 @Header('Cache-Control', 'none')
@@ -379,7 +367,7 @@ crear() {
 
 Finalmente, podemos utilizar el decorador `@Redirect` para hacer que un *handler* redirija a otra URL.
 
-```typescript
+```js
 @Get('prueba')
 @Redirect('http://....', 302)
 prueba() {
@@ -389,7 +377,7 @@ prueba() {
 
 Por defecto, la redirección genera un código 301, pero podemos cambiarlo en el segundo parámetro. De hecho, también podemos hacer que tanto la ruta a la que redirigir como el código de estado cambien, devolviendo desde el *handler* un objeto con los campos `url` y `statusCode` establecidos con los valores indicados (ambos campos son opcionales):
 
-```typescript
+```js
 @Get('prueba')
 @Redirect('http://....', 302)
 prueba() {
@@ -421,14 +409,14 @@ prueba() {
 Vamos ahora a conectar desde Nest con una base de datos MongoDB. Utilizaremos Mongoose, como hemos venido haciendo en temas anteriores, pero esta vez lo haremos a través de una librería puente de Nest, llamada `@nestjs/mongoose`. Por lo tanto, debemos instalar ambas librerías en nuestro proyecto:
 
 ```
-npm i @nestjs/mongoose mongoose
+npm install @nestjs/mongoose mongoose
 ```
 
 #### 3.4.4.1. Conectando a la base de datos
 
 En el módulo principal del proyecto (`app.module.ts`), importamos `@nestjs/mongoose` y conectamos a la base de datos empleando el método `forRoot` en la sección de `imports`:
 
-```typescript
+```js
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -448,7 +436,7 @@ export class AppModule {}
 
 Igual que hemos hecho en temas previos, necesitamos definir los esquemas y modelos de nuestra base de datos MongoDB. En este caso, es conveniente ubicar los esquemas junto al módulo que los vaya a utilizar. En nuestro caso, definiríamos el esquema de los contactos en una subcarpeta `schemas` dentro de la carpeta `src/contacto`. Crearíamos un archivo `src/contacto/schema/contacto.schema.ts` con la definición del esquema, de forma similar a como hemos hecho en temas previos:
 
-```typescript
+```js
 import * as mongoose from 'mongoose';
 
 export const ContactoSchema = new mongoose.Schema({
@@ -473,7 +461,7 @@ export const ContactoSchema = new mongoose.Schema({
 
 El siguiente paso será incluir el esquema en el módulo asociado (archivo `src/contacto/contacto.module.ts`):
 
-```typescript
+```js
 ...
 import { MongooseModule } from '@nestjs/mongoose';
 import { ContactoSchema } from './schemas/contacto.schema';
@@ -490,7 +478,7 @@ Asociamos el esquema con un nombre de modelo (`Contacto`, en este caso), mediant
 
 Ahora que ya tenemos definido el esquema, lo importamos en el servicio asociado (el de contactos, en este caso), utilizando el mismo nombre que usamos en el módulo principal (`Contacto`). Deberemos importar el decorador `@InjectModel` para poder inyectar el modelo en el servicio:
 
-```typescript
+```js
 ...
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -509,7 +497,7 @@ A partir del constructor que hemos definido, ya podemos hacer referencia al obje
 
 Por ejemplo, así podemos definir un método (asíncrono, en este caso) para obtener un listado de todos los contactos:
 
-```typescript
+```js
 async listar(): Promise<Contacto[]> {
     return await this.contactoModel.find().exec();
 }
@@ -517,7 +505,7 @@ async listar(): Promise<Contacto[]> {
 
 Y este otro método permite insertar un contacto a partir de su DTO:
 
-```typescript
+```js
 async insertar(crearContactoDto: ContactoDto): Promise<Contacto> {
     const nuevoContacto = new this.contactoModel(crearContactoDto);
     return await nuevoContacto.save();
@@ -526,7 +514,7 @@ async insertar(crearContactoDto: ContactoDto): Promise<Contacto> {
 
 Lo que nos queda es utilizar estos métodos del servicio desde los correspondientes *handlers* del controlador. Los métodos del controlador también podemos definirlos como asíncronos si queremos:
 
-```typescript
+```js
 ...
 
 @Controller('contacto')
@@ -540,36 +528,12 @@ export class ContactoController {
         return this.contactoService.listar();
     }
 
-    // GET /contacto/buscar/:id
-    @Get('buscar/:id')
-    async buscarPorId(@Param('id') id: string) {
-        try {
-            let resultado = await this.contactoService.buscarPorId(id);
-            if (resultado) return {resultado: resultado};
-            throw new Error();
-        } catch(Error) {
-            return { error: 'Error buscando al contacto' };
-        }
-    }
-
     // POST /contacto
     @Post()
     async crear(@Body() crearContactoDto: ContactoDto) {
         return this.contactoService.insertar(crearContactoDto);
     }
-    
-    // PUT /contacto/:id
-    @Put(':id')
-    actualizar(@Param('id') id: string, 
-        @Body() actualizarContactoDto: ContactoDto) {
-        return this.contactoService.actualizar(id, actualizarContactoDto);
-    }
 
-    // DELETE /contacto/:id
-    @Delete(':id')
-    borrar(@Param('id') id: string) {
-        return this.contactoService.borrar(id);
-    }
     ...
 }
 ```
@@ -586,21 +550,20 @@ Notar que en el constructor del controlador inyectamos el servicio, y luego pode
 > * Modificaremos el controlador de tareas para hacer uso de los métodos del servicio en cada *handler*. Haz también asíncronos los métodos del controlador.
 > 
 > Prueba el funcionamiento adecuado de todos los servicios desde la colección de Postman que habrás creado previamente.
->
 
 ### 3.4.5. Vistas y contenido estático en Nest.js
 
 Desde Nest.js también podemos emplear nuestro motor de plantillas preferido y renderizar las vistas que queramos. En nuestro caso, volveremos a utilizar Nunjucks, como en sesiones anteriores. Lo primero que debemos hacer es instalar la librería. También podemos instalar Bootstrap de paso, si tenemos pensado utilizarlo:
 
 ```
-npm i nunjucks bootstrap
+npm install nunjucks bootstrap
 ```
 
 Después, editamos el archivo principal `main.ts`. Debemos importar por un lado la librería `nunjucks`, y por otra, el objeto `NestExpressApplication`, ya que ahora necesitamos especificar que nuestra aplicación Nest.js se va a apoyar en Express para utilizar los métodos asociados para la gestión del motor de plantillas.
 
 En el código del método `bootstrap` de este archivo `main.ts`, crearemos ahora una aplicación que será un subtipo de `NestExpressApplication` y, antes de ponerla en marcha, configuraremos Nunjucks como lo hacíamos en sesiones previas, y emplearemos los métodos `useStaticAssets` y `setViewEngine` de la aplicación `app` para especificar el/las carpeta(s) donde habrá contenido estático, y el motor de plantillas a utilizar, respectivamente. En nuestro caso, puede quedar algo así:
 
-```typescript
+```js
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as nunjucks from 'nunjucks';
 
@@ -622,57 +585,12 @@ async function bootstrap() {
 bootstrap();
 ```
 
-Las carpetas `public` y `views` deberán ubicarse, de acuerdo al código anterior, en la raíz del proyecto Nest. Después, para renderizar cualquier vista desde un *handler* (método de un controlador), basta con que le pasemos la respuesta como parámetro con el decorador `@Res()`, para poder acceder a su método `render`, como hemos hecho en sesiones previas. Por ejemplo, si quisiéramos obtener el listado de contactos sería:
+Las carpetas `public` y `views` deberán ubicarse, de acuerdo al código anterior, en la raíz del proyecto Nest. Después, para renderizar cualquier vista desde un *handler* (método de un controlador), basta con que le pasemos la respuesta como parámetro con el decorador `@Res()`, para poder acceder a su método `render`, como hemos hecho en sesiones previas:
 
-```typescript
-@Get('contactos')
-async listar(@Res() res) {
-    const resultado = await this.contactoService.listar();
-    return res.render('contactos_listado', { contactos: resultado });
-}
-```
-Del mismo modo, podríamos usar el decordador `@Param` para buscar la información de un contacto en concreo y mostrar su ficha, o rellenar los campos de un formulario para poder modificar la información de dicho contacto.
-
-```typescript
-@Get('contactos/:id')
-async buscarPorId(@Res() res, @Param('id') id: string) {
-    const resultado = await this.contactoService.buscarPorId(id);
-    return res.render('contactos_ficha', { contacto: resultado });
-}
-```
-Para gestionar una petición post, usaremos el manejador `@Post` acompañado de su ruta (sino se indica ruta se entiende que es la raíz del controlador) y con el decorador `@Body` podemos acceder a la información que se le envía de un formulario.
-
-```typescript
-@Post('contactos')
-async insertarContacto(@Res() res, @Body() body) {
-    try {
-        const resultado = await this.contactoService.insertar(body);
-        return res.render('contactos_ficha', { contacto: resultado });
-    } catch (error) {
-        res.render('error', { error: "Error al insertar el contacto" });
-    }
-
-}
-```
-En las sesiones previas vimos que usando la librería method-override podíamos implementar los métodos put y delete. En este caso no podremos usar eso, teniendo que usar para la parte web el servicio Post.
-
-```typescript
-// Modificar contacto
-@Post('contactos/:id')
-async modificarContacto(@Res() res, @Param('id') id: string, @Body() body) {
-    try {
-        const resultado = await this.contactoService.actualizar(id, body);
-        return res.render('contactos_ficha', { contacto: resultado });
-    } catch (error) {
-        res.render('error', { error: "Error al modificar el contacto" });
-    }
-}
-
-// Borrar contacto
-@Post('contactos/borrar/:id')
-async borrarContacto(@Res() res, @Param('id') id: string) {
-    const resultado = await this.contactoService.borrar(id);
-    this.listar(res);
+```js
+@Get()
+async prueba(@Res() res) {
+    return res.render('index');
 }
 ```
 
@@ -684,7 +602,7 @@ async borrarContacto(@Res() res, @Param('id') id: string) {
 > 
 > **6.** Crea un nuevo módulo llamado `web`, con su controlador asociado. Antes de seguir, deberás exportar el servicio `TareaService` en el módulo de tareas para poderlo utilizar en este otro módulo:
 
-```typescript
+```js
 @Module({
   imports: ...
   controllers: ...
@@ -695,7 +613,7 @@ async borrarContacto(@Res() res, @Param('id') id: string) {
 
 > Después, deberás importar el módulo de tareas entero desde el nuevo módulo web:
 
-```typescript
+```js
 @Module({
   imports: [TareaModule],
   controllers: [WebController]
@@ -705,283 +623,3 @@ async borrarContacto(@Res() res, @Param('id') id: string) {
 > Ahora, define un par de *handlers* en el controlador de web (archivo `src/web/web.controller.ts`) para responder a las rutas `/web/tareas` y `/web/tareas/:id`. El primero deberá renderizar la vista `tareas_listado.njk`, que deberás crear, con un listado con los nombres de las tareas. Al hacer click en cada una de ellas se llamará al segundo *handler*, que renderizará la vista `tareas_ficha.njk`, que también deberás implementar, con la ficha de cada tarea, indicando su nombre, prioridad y fecha.  
 > 
 > Finalmente, haz que la ruta raíz redireccione al listado de tareas.
-> **7.** Dentro del módulo `web`, implementa las rutas que nos permitan modificar y borrar una tarea. Para ello, previamente dentro de la vista `tareas_listado.njk` añade un botón a cada tarea que te permita seleccionar la tarea a borrar o modificar. Una vez creado el botón renderiza la vista que te permita modificarla `tareas_editar.njk`.
-
-### 3.4.6. Autenticación en Nest.js 
-En este apartado, vamos a ver los dos mecanismos vistos anteriormente para autenticar a los usuarios que acceden a nuestros servicios.
-
-#### 3.4.6.1 Autenticación basada en tokens usando [JWT](https://jwt.io/).
-En el tema 3.2 vimos cómo usar la autenticación para loguearnos a nuestras aplicaciones. En este punto vamos a ver cómo usar la autenticación en Nestjs en el lado del servidor usando [JSON Web Token](https://github.com/nestjs/jwt), mecanismo de autenticación que permita ser aplicado a aplicaciones cliente (no de navegador), como por ejemplo las aplicaciones de escritorio, o móviles.
-
-La autenticación basada en tokens es un método mediante el cual nos aseguramos de que cada petición a un servidor viene acompañada por un token firmado, que contiene los datos necesarios para verificar que el cliente ya ha sido validado previamente.
-
-Para poder generar un token utilizaremos la librería *passport-jwt*:
-
-```
-npm install --save @nestjs/jwt passport-jwt
-npm install --save-dev @types/passport-jwt
-```
-
-El paquete @nestjs/jwt que hemos instalado es el que tiene las utilidades para manipular JWT. El paquete passport-jwt es el encargado de implementar la estrategia JWT y @types/passport-jwt proporciona las definiciones de tipos de TypeScript.
-
-Con el objetivo de encapsular las operaciones de autenticación, vamos a generar un módulo y su servicio:
-
-```
-nest g module auth
-nest g service auth
-```
-
-En el fichero `auth.service.ts` añadiremos el método `login`, importando el servicio `JwtService`. Los usuarios los tendremos por ahora en un array predefinido.
-
-```typescript
-import { HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { LoginDto } from './dto/login-dto';
-
-// Este array de usuarios debería estar en la BBDD con la contraseña CIFRADA
-const usuarios = [
-  { usuario: 'rosa', password: 'rosa', rol: 'admin' },
-  { usuario: 'pepe', password: 'pepe111', rol: 'normal' }
-];
-
-@Injectable()
-export class AuthService {
-  constructor(private jwtService: JwtService) { }
-
-  async login(user: LoginDto) {
-    const usuario = usuarios.find(u => u.usuario === user.usuario && u.password === user.password);
-    if (usuario) {
-      const payload = { sub: usuario.usuario };
-      return {
-        access_token: this.jwtService.sign(payload),
-      };
-    } else {
-      throw new UnauthorizedException({
-        status: HttpStatus.UNAUTHORIZED,
-        error: 'Usuario o password incorrecto',
-      });
-    }
-  }
-}
-```
-
-Como vemos, estamos usando la librería @nestjs/jwt que nos permite usar el método sign() para generar nuestro token JWT, devolviendolo en la respuesta. Hemos elegido la propiedad sub (subject) donde el estándar JWT define que se guardará aquello que identifique (en la base de datos) de nuestro usuario. El siguiente paso será actualizar AuthModule para importar las nuevas dependencias y configurar JwtModule.
-
-Primero, crearemos un archivo de constantes (constants.ts) dentro de auth, donde almacenaremos la clave secreta para firmar el token digitalmente y que no pueda ser alterado por terceros:
-
-```typescript
-export const jwtConstants = {
-    secret: 'WEr34fwGter',
-};
-```
-
-El siguiente paso será abrir auth.module.ts en el directorio auth para configurar `JwtModule`, llamando al método `register()` pasándole las opciones del token:
-```typescript
-import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import { jwtConstants } from './constants';
-import { JwtStrategy } from './jwt.strategy';
-
-@Module({
-  controllers: [AuthController],
-  imports: [
-    PassportModule,
-    JwtModule.register({
-      secret: jwtConstants.secret,
-      signOptions: { expiresIn: '30d' } // El token expira en 30 días
-    })
-  ],
-  providers: [AuthService, JwtStrategy]
-})
-export class AuthModule { }
-
-```
-Una vez hecho esto, debemos actualizar la ruta de login para que devuelva el resultado de la llamada al servicio de autenticación:
-
-```typescript
-import { Body, Controller, HttpStatus, Post, UnauthorizedException, ValidationPipe } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login-dto';
-
-@Controller('auth')
-export class AuthController {
-    constructor(private readonly authService: AuthService) {}
-
-    @Post('login')
-    async login(
-      @Body(new ValidationPipe({ whitelist: true }))
-      userDto: LoginDto
-    ) {
-        return await this.authService.login(userDto);
-    }
-}
-```
-Como se puede observar, se ha utilizado una clase (LoginDto) que representa los datos del login que se van a recibir: _usuario_ y _password_. Con `ValidationPipe` hacemos también una validación de los campos que nos llegan. Los decoradores para validar los campos se encuentran en la clase **LoginDto**. Para usar validaciones debemos tener instalada la librería **class_validator** `npm i class_validator`. En nuestro caso, verificamos que los 2 campos tengan valores de tipo string y que no estén vacíos.
-
-```typescript
-import {
-    IsNotEmpty, IsString
-} from 'class-validator';
-
-export class LoginDto {
-    @IsNotEmpty()
-    @IsString()
-    usuario: string;
-    @IsNotEmpty()
-    @IsString()
-    password: string;
-}
-```
-
-Si algún campo no cumple la validación, Nest devuelve automáticamente una respuesta de error 400 (Bad Request) indicando los campos que no han sido validados.
-
-**Validación de rutas**
-
-Para proteger las rutas que requieren credenciales de login para acceder (token), debemos crear un guardian derivado de la clase **AuthGuard** que utilice 'jwt', es decir, la clase JWTStrategy que hemos creado antes para validar el token y dejarnos acceder al servicio en caso de ser válido (o devolver un error 401).
-
-`nest g guard auth/jwt-auth` (la opción --flat es para no crear una carpeta)
-
-```typescript
-import { Injectable } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-
-// Crear esta clase: nest g guard auth/jwt-auth --flat
-@Injectable()
-export class JwtAuthGuard extends AuthGuard('jwt') {}
-```
-
-Una vez creado esto, debemos indicar qué métodos de los controladores necesitarán token para acceder a ellos. Esto se hace con el decorador **@UseGuards(JwtAuthGuard)**:
-
-```typescript
-import { Controller, Get, Param, Put, Body, Delete, Post, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { TareaDto } from './dto/tarea-dto/tarea-dto';
-import { TareaService } from './tarea.service';
-
-@Controller('tarea')
-export class TareaController {
-    ...
-    // POST /tarea
-    @Post()
-    @UseGuards(JwtAuthGuard)
-    async crear(@Body() crearTareaDto: TareaDto) {
-        return this.tareaService.insertar(crearTareaDto);
-    }
-    ...     
-}
-```
-
-A partir de este momento solo se podrá acceder a estas rutas incluyendo el token generado en el login en la cabecera **Authorization** de la petición, con el prefijo **Bearer**: `Authorization: Bearer TOKEN_JWT`.
-
-#### 3.4.6.2 Autenticación basada en sesiones
-Como sabemos, la autenticación basada en sesiones permite autenticar usuarios en aplicaciones web basadas en navegadores, y "recordar" el usuario que se validó en sus sucesivas visitas. Para ello, utilizan las **sesiones**, que comprenden un conjunto de interacciones de un cliente con un servidor en un determinado período. Cuando abrimos un navegador y accedemos a una web, automáticamente se inicia la sesión en dicha web, y mientras no cerremos el navegador o la sesión manualmente, la aplicación recuerda (o puede recordar, si quiere) que ya hemos accedido, y los pasos que hemos ido dando en la actual sesión.
-
-En este apartado seguiremos utilizando el mismo ejemplo de contactos, sobre el que probaremos dicha autenticación.
-##### 3.4.6.2.1. Definición de sesiones en Nest.js
-
-Para poder trabajar con sesiones en Nest, instalaremos el módulo *express-session* que vimos anteriormente. Es un *middleware* que permite, en cada petición que requiera una comprobación, determinar si el usuario ya se ha validado y con qué credenciales, antes de dejarle acceder a lo que busca o no.
-
-Así que lo primero que haremos será instalar el módulo:
-
-```
-npm install express-session
-```
-
-Después, lo incorporamos a nuestro servidor Express junto con el resto de módulos:
-
-```typescript
-const session = require('express-session');
-...
-```
-
-A continuación, configuramos la sesión dentro de la aplicación Express:
-
-```typescript
-let app = express();
-...
-app.use(session({
-    secret: '1234', // Clave para cifrar la sesión
-    resave: true, // Refresca la sesión en cada nuevo acceso
-    saveUninitialized: false, // Guarda las sesiones aun sin haberse completado
-    expires: new Date(Date.now() + (30 * 60 * 1000)) // La sesión expirará en 30minutos
-}));
-```
-##### 3.4.6.2.2. Validación
-
-En todo proceso de autenticación debe haber una validación previa, donde el usuario envíe sus credenciales y se cotejen con las existentes en la base de datos, antes de dejarle acceder. Por simplicidad, vamos a cargar los usuarios en un array, con su nombre de usuario y su password, pero sabéis que los usuarios deberían estar en una tabla de nuestra base de datos con la contraseña cifrada:
-
-```typescript
-const usuarios = [
-    { usuario: 'nacho', password: '12345' },
-    { usuario: 'pepe', password: 'pepe111' }
-];
-```
-
-Ahora tendríamos que definir el servicio de login:
-```typescript
-@Post('login')
-async login(@Res() res, @Req() req, @Body() body) {
-    let usu = body.usuario;
-    let pass = body.password;
-    let existe = aUsuarios.filter(usuario => usuario.usuario == usu && usuario.password == pass);
-    
-    if (existe.length > 0) {
-        req.session.usuario = existe[0].usuario;
-        this.listar(res);
-    } else {
-        res.render('iniciarSesion', { error: "Error usuario o contraseña incorrecta" });
-    }
-}
-```
-
-##### 3.4.6.2.3. Autenticación
-
-Una vez validado el usuario, debemos comprobar en cada una de las rutas que queramos proteger, si el usuario ha sido logueado o no. Para ello, a cada una de esos recursos deberemos comprobar si existe la sessión haciendo uso del decorador `@Session`. Veamos un ejemplo donde sólo aquellos usuarios que han sido logueados podrán crear un contacto:
-```typescript
-@Get('contactos/nuevo')
-async crearContacto(@Res() res, @Session() session) {
-    if(!session.usuario) return res.render('login', {error: "El usuario debe estar logueado"});
-    return res.render('contactos_nuevo');
-}
-```
-
-Para poder acceder a la sesión desde las vistas, debemos definir un middleware que asocie la sesión con los recursos de la vista: 
-```typescript
-app.use((req, res, next) => {
-    res.locals.session = req.session;
-    next();
-});
-```
-Después, podemos acceder a esta sesión desde las vistas, a través de la variable `session` que hemos definido en la respuesta (`res.locals`). Por ejemplo, así podríamos ver si un usuario está ya logueado, para mostrar o no el botón de "Login" en el menú:
-
-```typescript
-{% if (session and session.usuario) %}
-    <a class="btn btn-dark" href="/web/logout">Logout</a>
-{% else %}
-    <a class="btn btn-dark" href="/web/login">Login</a>
-{% endif %}
-```
-
-
-Y con esto, ya sólo nos quedaría el apartado de cerrar sesión, que consistirá en destruir la sesión de dicho usuario, redirigiendo a posteriori a otro recurso.
-```typescript
-@Get('logout')
-async cerrarSession(@Res() res, @Req() req) {
-    req.session.destroy();
-    this.listar(res);
-}
-```
-> **Ejercicios propuestos:**
-> 
-> **1.** A partir del proyecto creado de "**tareas-nest**", vamos a añadir ahora autenticación basada en sesiones. Instala el *middleware express-session* en el proyecto, y configúralo como en el ejemplo visto antes. Define a mano en el servidor principal un array con nombres y passwords de usuarios autorizados, y protege las rutas que permitan hacer cualquier modificación sobre el catálogo de tareas. En concreto, sólo los usuarios validados podrán:
->
-> * Ver el formulario de inserción de tareas e insertar tareas (enviar el formulario)
-> * Borrar tareas
-> * Ver el formulario de edición de tareas y editar tareas (enviar el formulario)
->
-> Añade para ello una vista `login.njk` al conjunto de vistas de la aplicación. Puedes emplear el mismo formulario de login que en el ejemplo, y también añade las dos rutas para mostrar el formulario y para recoger los datos y validar el usuario. En caso de validación exitosa, se renderizará la vista del listado de tareas. En caso contrario, el formulario de login con un mensaje de error, como en el ejemplo proporcionado.
->
-> Finalmente, añade también una función de *logout* al menú de la aplicación, que sólo será visible si el usuario ya está validado, y que permitirá destruir su sesión y redirigir al listado de tareas.
