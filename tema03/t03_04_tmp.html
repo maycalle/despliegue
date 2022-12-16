@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>t03_04.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+<link rel="stylesheet" href="file:///home/rosa/Dropbox/IES%20San%20Vicente%2022-23/DAW/despliegue/css/GitHub2.css" type="text/css"><link rel="stylesheet" href="file:///home/rosa/Dropbox/IES%20San%20Vicente%2022-23/DAW/despliegue/css/estilos.css" type="text/css">
+<style>
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+  color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+  color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #8959a8;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: white;
+  color: #4d4d4c;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tema-3-opciones-avanzadas-de-expressjs">Tema 3. Opciones avanzadas de Express.js</h1>
+<h2 id="34-desarrollo-de-aplicaciones-con-nestjs">3.4. Desarrollo de aplicaciones con Nest.js</h2>
+<p><strong>Nest.js</strong> es un framework de desarrollo web en el servidor que, apoyándose en el framework <strong>Express</strong>, permite construir aplicaciones robustas y escalables utilizando una terminología muy similar a la que se emplea en el framework de cliente <em>Angular</em>. Al igual que Angular, utiliza lenguaje TypeScript para definir el código, aunque también es compatible con JavaScript.</p>
+<p><em>Nest.js</em> proporciona la mayoría de características que cualquier framework de desarrollo en el servidor proporciona, tales como mecanismos de autenticación, uso de ORM para acceso a datos, desarrollo de servicios REST, enrutado, etc.</p>
+<h3 id="341-instalaci%C3%B3n-y-creaci%C3%B3n-de-proyectos">3.4.1. Instalación y creación de proyectos</h3>
+<p><em>Nest.js</em> se instala como un módulo global al sistema a través del gestor de paquetes <code>npm</code>, con el siguiente comando:</p>
+<pre class="hljs"><code><div>npm i -g @nestjs/cli
+</div></code></pre>
+<p>Una vez instalado, para crear un proyecto utilizamos el comando <code>nest</code>, con la opción <code>new</code>, seguida del nombre del proyecto.</p>
+<pre class="hljs"><code><div>nest new nombre_proyecto
+</div></code></pre>
+<blockquote>
+<p><strong>NOTA</strong>: en la creación del proyecto, puede que el asistente pregunte qué gestor de paquetes vamos a utilizar. Lo normal es seleccionar <code>npm</code>.</p>
+</blockquote>
+<p>Esto creará una carpeta con el nombre del proyecto en nuestra ubicación actual, y almacenará dentro toda la estructura básica de archivos y carpetas de los proyectos Nest. Podemos consultar la información del proyecto generado con el comando <code>i</code> (o <code>info</code>):</p>
+<pre class="hljs"><code><div>nest i
+</div></code></pre>
+<p>Obtendremos una salida similar a esta (variando los números de versión):</p>
+<pre class="hljs"><code><div>[System Information]
+OS Version     : Linux 5.15
+NodeJS Version : v18.12.1
+NPM Version    : 8.19.2 
+
+[Nest CLI]
+Nest CLI Version : 9.1.5 
+
+[Nest Platform Information]
+platform-express version : 9.2.0
+schematics version       : 9.0.3
+testing version          : 9.2.0
+common version           : 9.2.0
+core version             : 9.2.0
+cli version              : 9.1.5
+</div></code></pre>
+<h4 id="3411-estructura-de-un-proyecto-nestjs">3.4.1.1. Estructura de un proyecto Nest.js</h4>
+<p>La estructura de carpetas y archivos creada por el comando <code>nest</code> tiene una serie de elementos clave que conviene resaltar. La mayor parte de nuestro código fuente se ubicará en la carpeta <code>src</code>. Entre otras cosas, podemos encontrar:</p>
+<ul>
+<li>El módulo principal <code>app.module.ts</code>, ya definido</li>
+<li>Un controlador de ejemplo, llamado <code>app.controller.ts</code>, con una ruta definida hacia la raíz de la aplicación.</li>
+<li>El archivo <code>main.ts</code>, que define la inicialización de la aplicación Crea una instancia del módulo principal <code>AppModule</code>, y se queda escuchando por un puerto determinado (que se puede modificar en este mismo archivo). Define para ello una función asíncrona, que luego se lanza para poner en marcha todo:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { NestFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/core'</span>;
+<span class="hljs-keyword">import</span> { AppModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.module'</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bootstrap</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">await</span> NestFactory.create(AppModule);
+  <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+}
+bootstrap();
+</div></code></pre>
+<h4 id="3412-poner-en-marcha-el-proyecto">3.4.1.2. Poner en marcha el proyecto</h4>
+<p>El asistente de creación del proyecto lo habrá dejado todo preparado, con las dependencias ya instaladas, e incluso el archivo <code>package.json</code> ya generado, para poder poner en marcha el proyecto. Sólo tenemos que ejecutar el siguiente comando:</p>
+<pre class="hljs"><code><div>npm run start
+</div></code></pre>
+<p>o con :dev que nos permite recompilar automáticamente cuando guardamos un archivo.</p>
+<pre class="hljs"><code><div>npm run start --watch
+</div></code></pre>
+<p>Si intentamos acceder a <code>http://localhost:3000</code> veremos un mensaje de bienvenida proporcionado por el módulo principal (&quot;Hello World!&quot;).</p>
+<h4 id="3413-conexi%C3%B3n-con-express">3.4.1.3. Conexión con Express</h4>
+<p>Como hemos comentado, Nest.js utiliza internamente el framework Express para trabajar sobre él. Esto hace que no tengamos por qué acceder directamente a ciertos elementos que tenemos disponibles en dicho framework, como la petición (<code>req</code>), respuesta (<code>res</code>), parámetros de la URL (<code>req.params</code>), cuerpo de la petición (<code>req.body</code>), etc. En su lugar, Nest.js proporciona una serie de decoradores que iremos viendo más adelante, y que internamente se comunican con estas propiedades de Express. Por ejemplo, el decorador <code>@Param</code> lo emplearemos para acceder a parámetros de la URL, y el decorador <code>@Body</code> para acceder al cuerpo de la petición.</p>
+<h3 id="342-estructurando-la-aplicaci%C3%B3n-m%C3%B3dulos-controladores-y-servicios">3.4.2. Estructurando la aplicación: módulos, controladores y servicios</h3>
+<p>Cuando creamos una aplicación Nest, inicialmente ya tenemos algo de código generado en la carpeta <code>src</code>. En concreto, disponemos del módulo principal de la aplicación, <code>app.module.ts</code>, que se encargará de coordinar al resto de módulos que definamos. Cada módulo debe encargarse de encapsular y gestionar un conjunto de características sobre un concepto de la aplicación. Por ejemplo, en una aplicación de una tienda online podemos tener un módulo que gestione los clientes (listados, altas, bajas), otro para el stock de productos, otro para los pedidos, etc.</p>
+<p>Cada uno de los módulos de nuestra aplicación puede (suele) disponer de una serie de elementos adicionales que le ayuden a dividir el trabajo. Así, en cada uno de los módulos podemos tener:</p>
+<ul>
+<li><strong>Controladores</strong> (<em>controllers</em>), que se encargarán de atender las peticiones relacionadas con dicho módulo. Por ejemplo, en un módulo de clientes, tendremos un controlador que se encargará de atender peticiones de listados de clientes, altas, bajas, etc.</li>
+<li><strong>Servicios</strong> (<em>services</em>), que se encargarán de gestionar el acceso a los datos para un determinado módulo. Así, volviendo al ejemplo de los clientes, podremos tener un servicio que se encargue de realizar efectivamente las búsquedas, inserciones, borrados, etc, en la colección de datos correspondiente. En realidad, los servicios son un tipo especial de <strong>proveedores</strong> (<em>providers</em>), elementos que utiliza Nest para realizar tareas específicas y relativamente complejas, descargando así de trabajo a los controladores, que se limitan a atender peticiones.</li>
+</ul>
+<p>De hecho, nuestro módulo principal <code>app.module.ts</code> cuenta con un servicio asociado <code>app.service.ts</code> y un controlador, <code>app.controller.ts</code>, ya creados. Inicialmente no hacen gran cosa, ya que el controlador sólo dispone de una ruta para cargar una página de bienvenida con un saludo simple, y el servicio se encarga de proporcionar ese mensaje de saludo. Pero es un punto de partida para comprender cómo se estructura el reparto de tareas en aplicaciones Nest.</p>
+<h4 id="3421-definiendo-m%C3%B3dulos-controladores-y-servicios">3.4.2.1. Definiendo módulos, controladores y servicios</h4>
+<p>Volvamos al tema de los módulos. Un módulo básicamente es una clase TypeScript anotada con el decorador <code>@Module</code>, que proporciona una serie de metadatos para construir la estructura de la aplicación. Como ya hemos visto, toda aplicación Nest tiene al menos un módulo raíz o <em>root</em>, el archivo <code>app.module.ts</code> explicado anteriormente, que sirve de punto de entrada a la aplicación, de forma similar a como funciona Angular.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Module } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { AppController } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.controller'</span>;
+<span class="hljs-keyword">import</span> { AppService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.service'</span>;
+
+<span class="hljs-meta">@Module</span> ({
+    imports: [],
+    controllers: [AppController],
+    providers: [AppService],
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule {}
+</div></code></pre>
+<p>El decorador <code>@Module</code> toma un objeto como parámetro, donde se definen los controladores, proveedores de servicios y otros elementos que iremos viendo más adelante.</p>
+<p>Para <strong>crear un nuevo módulo</strong> para nuestro proyecto, escribimos el siguiente comando desde la raíz del proyecto:</p>
+<pre class="hljs"><code><div>nest g module nombre_modulo
+</div></code></pre>
+<p>Se creará una carpeta <code>nombre_modulo</code> dentro de la carpeta <code>src</code>, y se añadirá la correspondiente referencia en la sección <code>imports</code> del módulo principal <code>AppModule</code>. Por ejemplo, si creamos un módulo llamado <code>contacto</code>, se creará la carpeta <code>contacto</code>, y la sección <code>imports</code> del módulo principal quedará así (notar que a la clase que se genera se le añade el sufijo &quot;Module&quot; automáticamente):</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Module</span>({
+    imports: [ContactoModule],
+    ...
+})
+</div></code></pre>
+<p>Así, el módulo principal ya incorpora al módulo <code>contacto</code>, y todo lo que éste contenga a su vez. En la carpeta correspondiente (<code>contacto</code>, siguiendo el ejemplo anterior) se generará un archivo TypeScript (<code>contacto.module.ts</code>, en nuestro ejemplo) con la nueva clase del módulo generada.</p>
+<p>Del mismo modo, podemos generar controladores y servicios, con estos comandos:</p>
+<pre class="hljs"><code><div>nest g controller nombre_controlador
+nest g service nombre_servicio
+</div></code></pre>
+<p>Otra posibilidad para generar los controladores y servicios es usando su alias:</p>
+<pre class="hljs"><code><div>nest g co nombre_controlador
+nest g s nombre_servicio
+</div></code></pre>
+<p>Si seguimos con el caso anterior, podemos crear un controlador llamado <code>contacto</code> y un servicio con el mismo nombre. Esto generará respectivamente los archivos <code>src/contacto/contacto.controller.ts</code> y <code>src/contacto/contacto.service.ts</code> en nuestro proyecto.</p>
+<p>Al seguir estos pasos, el propio módulo <code>contacto.module.ts</code> tendrá ya registrados su controlador y servicio, con lo que está ya todo conectado para poder empezar a trabajar:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Module } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { ContactoController } <span class="hljs-keyword">from</span> <span class="hljs-string">'./contacto.controller'</span>;
+<span class="hljs-keyword">import</span> { ContactoService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./contacto.service'</span>;
+
+<span class="hljs-meta">@Module</span>({
+  controllers: [ContactoController],
+  providers: [ContactoService]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoModule {}
+</div></code></pre>
+<p>Observemos la jerarquía de dependencias que se está creando: el módulo principal incorpora en su bloque <code>imports</code> al módulo <code>contacto</code>, y éste a su vez contiene en su interior las dependencias con el controlador y el servicio propios.</p>
+<p>Es importante definir los elementos en este orden (primero el módulo, y luego sus controladores y servicios), ya que de lo contrario tendríamos que definir estas dependencias a mano en el código.</p>
+<blockquote>
+<p><strong>Ejercicios propuestos</strong></p>
+<p><strong>1.</strong> Instala Nest si todavía no lo has hecho, y crea un proyecto llamado <code>tareas-nest</code> con el siguiente comando: <code>nest new tareas-nest</code>.</p>
+<p>Después, crea desde la carpeta principal del proyecto un módulo llamado <code>tarea</code>, con el comando <code>nest g module tarea</code>. Se habrá creado una carpeta <code>src/tarea</code> en el proyecto, con el módulo <code>tarea.module.ts</code> en su interior.</p>
+<p>De forma similar, crea también el controlador y servicio con el mismo nombre <code>tarea</code>.</p>
+</blockquote>
+<h4 id="3422-preparando-el-modelo-de-datos">3.4.2.2. Preparando el modelo de datos</h4>
+<p>A la hora de almacenar en la aplicación los datos con los que vamos a trabajar, es recomendable definir dos elementos:</p>
+<ul>
+<li>Una interfaz (<em>interface</em>) que defina los campos de cada objeto a tratar</li>
+<li>Un DTO (<em>Data Transfer Object</em>) que defina los datos que se van a enviar entre cliente y servidor, especialmente en las peticiones de inserción (POST) y modificación (PUT).</li>
+</ul>
+<p>La interfaz simplemente almacenará los campos a tratar. Básicamente es una definición de clase, pero en TypeScript esto se suele hacer definiendo interfaces. La creamos con el siguiente comando desde la raíz del proyecto (suponiendo el ejemplo de <code>contacto</code> que hemos venido contando):</p>
+<pre class="hljs"><code><div>nest g interface contacto/interfaces/contacto
+</div></code></pre>
+<p>Esto creará un archivo <code>src/contacto/interfaces/contacto.interface.ts</code>. Podemos editarlo para definir qué campos va a tener un objeto de este tipo:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Contacto {
+  id: <span class="hljs-built_in">string</span>;
+  nombre: <span class="hljs-built_in">string</span>;
+  edad: <span class="hljs-built_in">number</span>;
+  telefono: <span class="hljs-built_in">string</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>Nota</strong>: Si queréis aplicar alguna validación a los campos creados en la interfaz de arriba, podéis usar la clase class-validator que nos permite verificar campos como @IsEmail(), @IsNotEmpty(), etc. Ver más info <a href="https://docs.nestjs.com/techniques/validation#auto-validation">aquí</a>.</p>
+</blockquote>
+<p>Esta interfaz se puede incorporar al servicio o servicios que vayan a hacer uso de estos datos. Por ejemplo, en el servicio de contactos (archivo <code>src/contacto/contacto.service.ts</code>) podemos definir un atributo que sea un array de objetos de la interfaz <code>Contacto</code>, importando previamente dicha interfaz:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Injectable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { Contacto } <span class="hljs-keyword">from</span> <span class="hljs-string">'./interfaces/contacto/contacto.interface'</span>;
+
+<span class="hljs-meta">@Injectable</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoService {
+    contactos: Contacto[] = [];
+}
+</div></code></pre>
+<p>De forma similar, creamos el DTO como una clase. Podemos crearla en la misma subcarpeta <code>interfaces</code> donde hemos definido la interfaz, o en una subcarpeta <code>dto</code> propia:</p>
+<pre class="hljs"><code><div>nest g class contacto/dto/ContactoDto
+</div></code></pre>
+<p>Esto creará la clase <code>ContactoDto</code> en el archivo <code>src/contacto/dto/contacto-dto.ts</code>. Podemos definir dentro campos similares a los de la interfaz, ya que en principio se enviarán cliente y servidor los mismos campos aproximadamente que luego se van a almacenar para cada objeto. En el caso del DTO, podemos definir los campos como <code>readonly</code>, ya que son de sólo lectura (se envían al servidor para que los recoja y almacene):</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoDto {
+    readonly nombre: <span class="hljs-built_in">string</span>;
+    readonly edad: <span class="hljs-built_in">number</span>;
+    readonly telefono: <span class="hljs-built_in">string</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>Ejercicios propuestos</strong></p>
+<p><strong>2.</strong> Sobre el proyecto anterior, crea ahora la interfaz <code>tarea</code> en la subcarpeta <code>interfaces</code>, con el comando <code>nest g itf tarea/interfaces/tarea</code>. Define los siguientes campos para cada tarea que vamos a gestionar:</p>
+<ul>
+<li>Un <code>id</code> de tipo texto</li>
+<li>El <code>nombre</code> de la tarea (texto)</li>
+<li>La <code>prioridad</code> de la tarea (entero)</li>
+<li>La <code>fecha</code> tope de finalización de la tarea (fecha)</li>
+</ul>
+<p>Añade un array de tareas (objetos de la interfaz <code>Tarea</code> que acabas de crear) en el servicio de la tarea (<code>src/tarea/tarea.service.ts</code>).</p>
+<p>Después, crea un DTO llamado <code>TareaDto</code> con el comando <code>nest g cl tarea/dto/TareaDto</code>. Define dentro los mismos campos que hemos definido para la interfaz (salvo el <em>id</em>), de tipo <em>sólo lectura</em>.</p>
+</blockquote>
+<h3 id="343-m%C3%A1s-sobre-los-controladores">3.4.3. Más sobre los controladores</h3>
+<p>Los controladores en Nest.js se encargan de gestionar las peticiones y respuestas a los clientes. Internamente, son clases con el decorador <code>@Controller</code>, que añade metainformación para crear un mapa de enrutado. Gracias este mapa, Nest sabe cómo enviar las peticiones que lleguen al controlador adecuado.</p>
+<p>Ya hemos visto cómo crear controladores en Nest, y que queden asociados a un módulo previamente creado. Suponiendo el controlador de <code>contacto</code> del ejemplo anterior, su estructura básica al crearse es la siguiente:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Controller } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+
+<span class="hljs-meta">@Controller</span>(<span class="hljs-string">'contacto'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoController { 
+    ...
+}
+</div></code></pre>
+<p>El parámetro que tiene el controlador es el prefijo en la URL para acceder a él. Así, cualquier ruta que vaya a ser recogida por este controlador tendrá la estructura <code>http://localhost:3000/contacto</code> (suponiendo la ruta y puerto por defecto definido en <code>main.ts</code>).</p>
+<h4 id="3431-definir-handlers-para-recoger-las-peticiones">3.4.3.1. Definir <em>handlers</em> para recoger las peticiones</h4>
+<p>Para gestionar estas peticiones, se deben definir unos métodos en el controlador, llamados manejadores o <em>handlers</em>. Estos métodos utilizan decoradores que son verbos HTTP, que indican a qué tipo de método responder (<code>@Get</code>, <code>@Post</code>, <code>@Put</code>, <code>@Delete</code>...). Entre paréntesis, podemos indicar una ruta adicional al prefijo del controlador. Si no especificamos ninguna, se entiende que responden a la ruta raíz del controlador.</p>
+<p><strong>@Get</strong></p>
+<p>Por ejemplo, así podríamos definir <em>handlers</em> de tipo <code>@Get</code> para obtener un listado general, y un dato a partir de su <em>id</em>, respectivamente. Deberemos importar el decorador junto con el resto de elementos necesarios del paquete <code>@nestjs/common</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Controller, Get, Param } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+
+<span class="hljs-meta">@Controller</span>(<span class="hljs-string">'contacto'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoController { 
+
+    <span class="hljs-comment">// GET /contacto</span>
+    <span class="hljs-meta">@Get</span>()
+    listar() {
+        ...
+    }
+
+    <span class="hljs-comment">// GET /contacto/buscar/:id</span>
+    <span class="hljs-meta">@Get</span>(<span class="hljs-string">'buscar/:id'</span>)
+    buscarPorId(<span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>) {
+        ...
+    }
+}
+</div></code></pre>
+<p>En el caso del segundo <em>handler</em>, utilizamos un decorador <code>@Param</code> para acceder al parámetro que queramos de la URL (en este caso, el parámetro <code>id</code>), y asociarlo a un nombre de variable, que será el que utilicemos en el código del <em>handler</em>. En este caso, la variable se llama igual que el parámetro, pero podría tener un nombre diferente si quisiéramos.</p>
+<p>A la hora de emitir una respuesta, deberemos devolver (<code>return</code>) un resultado. Nest.js serializa automáticamente objetos JavaScript a formato JSON, mientras que si enviamos un tipo simple (por ejemplo, un entero, o una cadena de texto), lo envía como texto plano. Por lo tanto, normalmente no tendremos que preocuparnos por esta tarea. Podemos devolver algo como esto:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// GET /contacto</span>
+<span class="hljs-meta">@Get</span>()
+listar() {
+    <span class="hljs-keyword">return</span> {
+        resultado: ... <span class="hljs-comment">// Datos buscados</span>
+    };
+}
+</div></code></pre>
+<p><strong>@Post</strong></p>
+<p>Para trabajar con peticiones de tipo POST, utilizaremos el decorador <code>@Body</code> para recoger los datos del cuerpo de la petición. Sin embargo, para que estos datos puedan ser procesados, necesitamos definir un <strong>DTO</strong> (<em>Data Transfer Object</em>) en TypeScript. Como ya hemos visto antes, un DTO es básicamente un objeto que define cómo se enviarán los datos por la red. Podemos hacerlo con interfaces o con clases, aunque Nest.js recomienda la segunda opción, ya que dichas clases se mantienen al transpilar el código a JavaScript (los interfaces no), y esto proporciona alguna funcionalidad añadida, como poder trabajar con <em>pipes</em>.</p>
+<p>Lo más habitual es crear una subcarpeta <em>dto</em> dentro del controlador que lo vaya a utilizar, con la clase dentro. En nuestro caso, ya hemos creado previamente nuestro DTO en <code>src/contacto/dto/contacto.dto.ts</code>, con la información que se enviará del contacto. Recordemos su estructura:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> CrearContactoDto {
+    readonly nombre: <span class="hljs-built_in">string</span>;
+    readonly edad: <span class="hljs-built_in">number</span>;
+    readonly telefono: <span class="hljs-built_in">string</span>;
+}
+</div></code></pre>
+<p>Podemos importar este DTO desde el controlador, y utilizarlo en los <em>handlers</em> de tipo POST que lo requieran:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Controller, Get, Post, Body, Param } 
+    <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { ContactoDto } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dto/contacto-dto/contacto-dto'</span>;
+
+<span class="hljs-meta">@Controller</span>(<span class="hljs-string">'contacto'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoController { 
+
+    ...
+
+    <span class="hljs-comment">// POST /contacto</span>
+    <span class="hljs-meta">@Post</span>()
+    crear(<span class="hljs-meta">@Body</span>() crearContactoDto: ContactoDto) {
+        <span class="hljs-comment">// Aquí podemos utilizar </span>
+        <span class="hljs-comment">// crearContactoDto.nombre, o edad, etc.</span>
+    }
+}
+</div></code></pre>
+<p><strong>@Put y @Delete</strong></p>
+<p>Del mismo modo se definen los <em>handlers</em> para las operaciones PUT y DELETE. En el caso de PUT, también será necesario utilizar un DTO para recoger los datos de la petición. Puede ser el mismo que para la inserción, si se van a enviar los mismos datos.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// PUT /contacto/:id</span>
+<span class="hljs-meta">@Put</span>(<span class="hljs-string">':id'</span>)
+actualizar(<span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>, 
+           <span class="hljs-meta">@Body</span>() actualizarContactoDto: ContactoDto) {
+    ...  
+}
+
+<span class="hljs-comment">// DELETE /contacto/:id</span>
+<span class="hljs-meta">@Delete</span>(<span class="hljs-string">':id'</span>)
+borrar(<span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>) {
+    ...
+}
+</div></code></pre>
+<h4 id="3432-c%C3%B3digos-de-estado-cabeceras-de-respuesta-y-redirecciones">3.4.3.2. Códigos de estado, cabeceras de respuesta y redirecciones</h4>
+<p>Por defecto, los manejadores o <em>handlers</em> en Express devuelven automáticamente un código 200 junto con la respuesta, salvo en el caso de peticiones POST, donde se devuelve un estado 201. Si queremos devolver otro estado diferente, podemos utilizar el decorador <code>@HttpCode</code> en el encabezado del <em>handler</em>, indicando el código a devolver:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Post</span>
+<span class="hljs-meta">@HttpCode</span>(<span class="hljs-number">204</span>)
+crear() {
+    ...
+}
+</div></code></pre>
+<p>Además, también podemos emplear el decorador <code>@Header</code> para enviar cabeceras de respuesta (una vez por cada cabecera), indicando en cada caso el nombre de la cabecera y su valor asociado.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Post</span>
+<span class="hljs-meta">@HttpCode</span>(<span class="hljs-number">204</span>)
+<span class="hljs-meta">@Header</span>(<span class="hljs-string">'Cache-Control'</span>, <span class="hljs-string">'none'</span>)
+crear() {
+    ...
+}
+</div></code></pre>
+<p>Finalmente, podemos utilizar el decorador <code>@Redirect</code> para hacer que un <em>handler</em> redirija a otra URL.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Get</span>(<span class="hljs-string">'prueba'</span>)
+<span class="hljs-meta">@Redirect</span>(<span class="hljs-string">'http://....'</span>, <span class="hljs-number">302</span>)
+prueba() {
+    ...
+}
+</div></code></pre>
+<p>Por defecto, la redirección genera un código 301, pero podemos cambiarlo en el segundo parámetro. De hecho, también podemos hacer que tanto la ruta a la que redirigir como el código de estado cambien, devolviendo desde el <em>handler</em> un objeto con los campos <code>url</code> y <code>statusCode</code> establecidos con los valores indicados (ambos campos son opcionales):</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Get</span>(<span class="hljs-string">'prueba'</span>)
+<span class="hljs-meta">@Redirect</span>(<span class="hljs-string">'http://....'</span>, <span class="hljs-number">302</span>)
+prueba() {
+    <span class="hljs-keyword">if</span> (...)
+        <span class="hljs-keyword">return</span> { statusCode: <span class="hljs-number">300</span> };
+}
+</div></code></pre>
+<blockquote>
+<p><strong>NOTA</strong>: deberemos importar en la instrucción <code>import</code> correspondiente estos decoradores desde <code>@nestjs/common</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Ejercicios propuestos</strong>:</p>
+<p><strong>3.</strong> Sobre el proyecto que venimos desarrollando de tareas, vamos a rellenar el contenido del controlador de tareas creado en ejercicios anteriores, y que debería estar ubicado en <code>src/tarea/tarea.controller.ts</code>. El controlador responderá al prefijo <code>/tarea</code>. Define en el controlador los métodos (vacíos, de momento) para:</p>
+<ul>
+<li>Listar todas las tareas (GET)</li>
+<li>Buscar una tarea por su <em>id</em> (GET)</li>
+<li>Insertar una tarea (POST)</li>
+<li>Borrar una tarea (DELETE)</li>
+<li>Modificar una tarea (PUT)</li>
+</ul>
+<p>Haz que cada método, de momento, simplemente devuelva una cadena de texto con la información del método al que se ha accedido. Por ejemplo, para el listado de tareas, podemos devolver &quot;Listado de tareas&quot;.</p>
+<p>Utiliza el DTO <code>TareaDto</code> creado en ejercicios anteriores para las operaciones de POST y PUT.</p>
+<p>Crea una colección en Postman llamada <code>TareasNest</code> y define una petición de prueba para cada uno de los servicios implementados.</p>
+</blockquote>
+<h3 id="344-conexi%C3%B3n-con-una-base-de-datos-mongodb">3.4.4. Conexión con una base de datos MongoDB</h3>
+<p>Vamos ahora a conectar desde Nest con una base de datos MongoDB. Utilizaremos Mongoose, como hemos venido haciendo en temas anteriores, pero esta vez lo haremos a través de una librería puente de Nest, llamada <code>@nestjs/mongoose</code>. Por lo tanto, debemos instalar ambas librerías en nuestro proyecto:</p>
+<pre class="hljs"><code><div>npm i @nestjs/mongoose mongoose
+</div></code></pre>
+<h4 id="3441-conectando-a-la-base-de-datos">3.4.4.1. Conectando a la base de datos</h4>
+<p>En el módulo principal del proyecto (<code>app.module.ts</code>), importamos <code>@nestjs/mongoose</code> y conectamos a la base de datos empleando el método <code>forRoot</code> en la sección de <code>imports</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Module } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { AppController } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.controller'</span>;
+<span class="hljs-keyword">import</span> { AppService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.service'</span>;
+<span class="hljs-keyword">import</span> { ContactoModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'./contacto/contacto.module'</span>;
+<span class="hljs-keyword">import</span> { MongooseModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/mongoose'</span>;
+
+<span class="hljs-meta">@Module</span>({
+  imports: [ContactoModule, 
+    MongooseModule.forRoot(<span class="hljs-string">'mongodb://localhost/contactos'</span>)],
+  controllers: [AppController],
+  providers: [AppService],
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule {}
+</div></code></pre>
+<h4 id="3442-definiendo-esquemas-y-modelos">3.4.4.2. Definiendo esquemas y modelos</h4>
+<p>Igual que hemos hecho en temas previos, necesitamos definir los esquemas y modelos de nuestra base de datos MongoDB. En este caso, es conveniente ubicar los esquemas junto al módulo que los vaya a utilizar. En nuestro caso, definiríamos el esquema de los contactos en una subcarpeta <code>schemas</code> dentro de la carpeta <code>src/contacto</code>. Crearíamos un archivo <code>src/contacto/schema/contacto.schema.ts</code> con la definición del esquema, de forma similar a como hemos hecho en temas previos:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ContactoSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
+  nombre: {
+      <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span>,
+      required: <span class="hljs-literal">true</span>,
+      minlength: <span class="hljs-number">3</span>
+  },
+  edad: {
+      <span class="hljs-keyword">type</span>: <span class="hljs-built_in">Number</span>,
+      required: <span class="hljs-literal">true</span>,
+      min: <span class="hljs-number">0</span>,
+      max: <span class="hljs-number">120</span>
+  },
+  telefono: {
+      <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span>,
+      required: <span class="hljs-literal">true</span>,
+      minlength: <span class="hljs-number">9</span>
+  }
+});
+</div></code></pre>
+<p>El siguiente paso será incluir el esquema en el módulo asociado (archivo <code>src/contacto/contacto.module.ts</code>):</p>
+<pre class="hljs"><code><div>...
+<span class="hljs-keyword">import</span> { MongooseModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/mongoose'</span>;
+<span class="hljs-keyword">import</span> { ContactoSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'./schemas/contacto.schema'</span>;
+
+<span class="hljs-meta">@Module</span>({
+  imports: [MongooseModule.forFeature([{ name: <span class="hljs-string">'Contacto'</span>, 
+                schema: ContactoSchema }])],
+  ...
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoModule {}
+</div></code></pre>
+<p>Asociamos el esquema con un nombre de modelo (<code>Contacto</code>, en este caso), mediante el método <code>forFeature</code>.</p>
+<p>Ahora que ya tenemos definido el esquema, lo importamos en el servicio asociado (el de contactos, en este caso), utilizando el mismo nombre que usamos en el módulo principal (<code>Contacto</code>). Deberemos importar el decorador <code>@InjectModel</code> para poder inyectar el modelo en el servicio:</p>
+<pre class="hljs"><code><div>...
+<span class="hljs-keyword">import</span> { Model } <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+<span class="hljs-keyword">import</span> { InjectModel } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/mongoose'</span>;
+<span class="hljs-keyword">import</span> { Contacto } <span class="hljs-keyword">from</span> <span class="hljs-string">'./interfaces/contacto.interface'</span>;
+
+<span class="hljs-meta">@Injectable</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoService {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-meta">@InjectModel</span>(<span class="hljs-string">'Contacto'</span>) 
+    <span class="hljs-keyword">private</span> readonly contactoModel: Model&lt;Contacto&gt;</span>) {}
+}
+</div></code></pre>
+<blockquote>
+<p><strong>NOTA</strong>: el modelo se asocia a la interfaz <code>Contacto</code> que hemos creado en pasos previos, a través del genérico <code>Model&lt;Contacto&gt;</code>, de manera que se transforman los objetos del modelo para acoplarlos al interfaz.</p>
+</blockquote>
+<p>A partir del constructor que hemos definido, ya podemos hacer referencia al objeto <code>this.contactoModel</code> en el resto de métodos que definamos, y así podremos realizar las correspondientes inserciones, búsquedas, etc, sobre el modelo.</p>
+<p>Por ejemplo, así podemos definir un método (asíncrono, en este caso) para obtener un listado de todos los contactos:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">async</span> listar(): <span class="hljs-built_in">Promise</span>&lt;Contacto[]&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.contactoModel.find().exec();
+}
+</div></code></pre>
+<p>Y este otro método permite insertar un contacto a partir de su DTO:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">async</span> insertar(crearContactoDto: ContactoDto): <span class="hljs-built_in">Promise</span>&lt;Contacto&gt; {
+    <span class="hljs-keyword">const</span> nuevoContacto = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.contactoModel(crearContactoDto);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> nuevoContacto.save();
+}
+</div></code></pre>
+<p>Lo que nos queda es utilizar estos métodos del servicio desde los correspondientes <em>handlers</em> del controlador. Los métodos del controlador también podemos definirlos como asíncronos si queremos:</p>
+<pre class="hljs"><code><div>...
+
+<span class="hljs-meta">@Controller</span>(<span class="hljs-string">'contacto'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ContactoController {
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> readonly contactoService: ContactoService</span>) {}
+
+    <span class="hljs-comment">// GET /contacto</span>
+    <span class="hljs-meta">@Get</span>()
+    <span class="hljs-keyword">async</span> listar() {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.contactoService.listar();
+    }
+
+    <span class="hljs-comment">// GET /contacto/buscar/:id</span>
+    <span class="hljs-meta">@Get</span>(<span class="hljs-string">'buscar/:id'</span>)
+    <span class="hljs-keyword">async</span> buscarPorId(<span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>) {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">let</span> resultado = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.contactoService.buscarPorId(id);
+            <span class="hljs-keyword">if</span> (resultado) <span class="hljs-keyword">return</span> {resultado: resultado};
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>();
+        } <span class="hljs-keyword">catch</span>(<span class="hljs-built_in">Error</span>) {
+            <span class="hljs-keyword">return</span> { error: <span class="hljs-string">'Error buscando al contacto'</span> };
+        }
+    }
+
+    <span class="hljs-comment">// POST /contacto</span>
+    <span class="hljs-meta">@Post</span>()
+    <span class="hljs-keyword">async</span> crear(<span class="hljs-meta">@Body</span>() crearContactoDto: ContactoDto) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.contactoService.insertar(crearContactoDto);
+    }
+    
+    <span class="hljs-comment">// PUT /contacto/:id</span>
+    <span class="hljs-meta">@Put</span>(<span class="hljs-string">':id'</span>)
+    actualizar(<span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>, 
+        <span class="hljs-meta">@Body</span>() actualizarContactoDto: ContactoDto) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.contactoService.actualizar(id, actualizarContactoDto);
+    }
+
+    <span class="hljs-comment">// DELETE /contacto/:id</span>
+    <span class="hljs-meta">@Delete</span>(<span class="hljs-string">':id'</span>)
+    borrar(<span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.contactoService.borrar(id);
+    }
+    ...
+}
+</div></code></pre>
+<p>Notar que en el constructor del controlador inyectamos el servicio, y luego podemos hacer uso de él, y de sus métodos, en cualquier <em>handler</em>.</p>
+<blockquote>
+<p><strong>Ejercicios propuestos</strong>:</p>
+<p><strong>4.</strong> Sobre el proyecto anterior de tareas, vamos a añadir las siguientes funcionalidades:</p>
+<ul>
+<li>Instalaremos los módulos <code>@nestjs/mongoose</code> y <code>mongoose</code> para conectar desde el módulo principal con una base de datos llamada <code>tareas-nest</code>.</li>
+<li>Definiremos un esquema llamado <code>TareaSchema</code> en el archivo <code>src/tarea/schemas/tarea.schema.ts</code>, con el esquema de cada tarea. Incluiremos los tres campos que ya tenemos (nombre, prioridad y fecha). Todos serán obligatorios, el nombre debe tener una longitud mínima de 5 caracteres, y la prioridad debe tener unos valores entre 1 y 5 (inclusive). Recuerda incorporar este esquema tanto al módulo de tareas como al servicio, de forma similar a como hemos hecho con el ejemplo de contactos.</li>
+<li>Implementaremos el servicio de tareas, definiendo métodos para realizar las cinco operaciones básicas sobre la base de datos anterior: listado general, búsqueda por <em>id</em>, inserción, borrado y modificación. Define todos los métodos como asíncronos.</li>
+<li>Modificaremos el controlador de tareas para hacer uso de los métodos del servicio en cada <em>handler</em>. Haz también asíncronos los métodos del controlador.</li>
+</ul>
+<p>Prueba el funcionamiento adecuado de todos los servicios desde la colección de Postman que habrás creado previamente.</p>
+</blockquote>
+<h3 id="345-vistas-y-contenido-est%C3%A1tico-en-nestjs">3.4.5. Vistas y contenido estático en Nest.js</h3>
+<p>Desde Nest.js también podemos emplear nuestro motor de plantillas preferido y renderizar las vistas que queramos. En nuestro caso, volveremos a utilizar Nunjucks, como en sesiones anteriores. Lo primero que debemos hacer es instalar la librería. También podemos instalar Bootstrap de paso, si tenemos pensado utilizarlo:</p>
+<pre class="hljs"><code><div>npm i nunjucks bootstrap
+</div></code></pre>
+<p>Después, editamos el archivo principal <code>main.ts</code>. Debemos importar por un lado la librería <code>nunjucks</code>, y por otra, el objeto <code>NestExpressApplication</code>, ya que ahora necesitamos especificar que nuestra aplicación Nest.js se va a apoyar en Express para utilizar los métodos asociados para la gestión del motor de plantillas.</p>
+<p>En el código del método <code>bootstrap</code> de este archivo <code>main.ts</code>, crearemos ahora una aplicación que será un subtipo de <code>NestExpressApplication</code> y, antes de ponerla en marcha, configuraremos Nunjucks como lo hacíamos en sesiones previas, y emplearemos los métodos <code>useStaticAssets</code> y <code>setViewEngine</code> de la aplicación <code>app</code> para especificar el/las carpeta(s) donde habrá contenido estático, y el motor de plantillas a utilizar, respectivamente. En nuestro caso, puede quedar algo así:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { NestExpressApplication } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/platform-express'</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> nunjucks <span class="hljs-keyword">from</span> <span class="hljs-string">'nunjucks'</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bootstrap</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> app = 
+    <span class="hljs-keyword">await</span> NestFactory.create&lt;NestExpressApplication&gt;(AppModule);
+
+  nunjucks.configure(<span class="hljs-string">'views'</span>, {
+    autoescape: <span class="hljs-literal">true</span>,
+    express:app
+  });
+
+  app.useStaticAssets(__dirname + <span class="hljs-string">'/../public'</span>, {prefix: <span class="hljs-string">'public'</span>});
+  app.useStaticAssets(__dirname + <span class="hljs-string">'/../node_modules/bootstrap/dist'</span>);
+  app.setViewEngine(<span class="hljs-string">'njk'</span>);
+  
+  <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+}
+bootstrap();
+</div></code></pre>
+<p>Las carpetas <code>public</code> y <code>views</code> deberán ubicarse, de acuerdo al código anterior, en la raíz del proyecto Nest. Después, para renderizar cualquier vista desde un <em>handler</em> (método de un controlador), basta con que le pasemos la respuesta como parámetro con el decorador <code>@Res()</code>, para poder acceder a su método <code>render</code>, como hemos hecho en sesiones previas. Por ejemplo, si quisiéramos obtener el listado de contactos sería:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Get</span>(<span class="hljs-string">'contactos'</span>)
+<span class="hljs-keyword">async</span> listar(<span class="hljs-meta">@Res</span>() res) {
+    <span class="hljs-keyword">const</span> resultado = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.contactoService.listar();
+    <span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'contactos_listado'</span>, { contactos: resultado });
+}
+</div></code></pre>
+<p>Del mismo modo, podríamos usar el decordador <code>@Param</code> para buscar la información de un contacto en concreo y mostrar su ficha, o rellenar los campos de un formulario para poder modificar la información de dicho contacto.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Get</span>(<span class="hljs-string">'contactos/:id'</span>)
+<span class="hljs-keyword">async</span> buscarPorId(<span class="hljs-meta">@Res</span>() res, <span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">const</span> resultado = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.contactoService.buscarPorId(id);
+    <span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'contactos_ficha'</span>, { contacto: resultado });
+}
+</div></code></pre>
+<p>Para gestionar una petición post, usaremos el manejador <code>@Post</code> acompañado de su ruta (sino se indica ruta se entiende que es la raíz del controlador) y con el decorador <code>@Body</code> podemos acceder a la información que se le envía de un formulario.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Post</span>(<span class="hljs-string">'contactos'</span>)
+<span class="hljs-keyword">async</span> insertarContacto(<span class="hljs-meta">@Res</span>() res, <span class="hljs-meta">@Body</span>() body) {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> resultado = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.contactoService.insertar(body);
+        <span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'contactos_ficha'</span>, { contacto: resultado });
+    } <span class="hljs-keyword">catch</span> (error) {
+        res.render(<span class="hljs-string">'error'</span>, { error: <span class="hljs-string">"Error al insertar el contacto"</span> });
+    }
+
+}
+</div></code></pre>
+<p>En las sesiones previas vimos que usando la librería method-override podíamos implementar los métodos put y delete. En este caso no podremos usar eso, teniendo que usar para la parte web el servicio Post.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Modificar contacto</span>
+<span class="hljs-meta">@Post</span>(<span class="hljs-string">'contactos/:id'</span>)
+<span class="hljs-keyword">async</span> modificarContacto(<span class="hljs-meta">@Res</span>() res, <span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>, <span class="hljs-meta">@Body</span>() body) {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> resultado = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.contactoService.actualizar(id, body);
+        <span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'contactos_ficha'</span>, { contacto: resultado });
+    } <span class="hljs-keyword">catch</span> (error) {
+        res.render(<span class="hljs-string">'error'</span>, { error: <span class="hljs-string">"Error al modificar el contacto"</span> });
+    }
+}
+
+<span class="hljs-comment">// Borrar contacto</span>
+<span class="hljs-meta">@Post</span>(<span class="hljs-string">'contactos/borrar/:id'</span>)
+<span class="hljs-keyword">async</span> borrarContacto(<span class="hljs-meta">@Res</span>() res, <span class="hljs-meta">@Param</span>(<span class="hljs-string">'id'</span>) id: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">const</span> resultado = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.contactoService.borrar(id);
+    <span class="hljs-keyword">this</span>.listar(res);
+}
+</div></code></pre>
+<blockquote>
+<p><strong>Ejercicios propuestos</strong>:</p>
+<p><strong>5.</strong> Instala Nunjucks y Bootstrap en el proyecto <code>tareas-nest</code> que hemos venido desarrollando. Configura la aplicación principal <code>main.ts</code> para que use Nunjucks como motor de plantillas, y cargue el contenido estático de Bootstrap.</p>
+<p>Define una carpeta <code>views</code> para las vistas, y una vista <code>base.njk</code> de la que heredará el resto, con un bloque para poder definir su título en la cabecera (<em>title</em>), y otro bloque para su contenido. Haz que la vista base incorpore los estilos de Bootstrap.</p>
+<p><strong>6.</strong> Crea un nuevo módulo llamado <code>web</code>, con su controlador asociado. Antes de seguir, deberás exportar el servicio <code>TareaService</code> en el módulo de tareas para poderlo utilizar en este otro módulo:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">@Module</span>({
+  imports: ...
+  controllers: ...
+  providers: ...
+  exports: [TareaService]
+})
+</div></code></pre>
+<blockquote>
+<p>Después, deberás importar el módulo de tareas entero desde el nuevo módulo web:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">@Module</span>({
+  imports: [TareaModule],
+  controllers: [WebController]
+})
+</div></code></pre>
+<blockquote>
+<p>Ahora, define un par de <em>handlers</em> en el controlador de web (archivo <code>src/web/web.controller.ts</code>) para responder a las rutas <code>/web/tareas</code> y <code>/web/tareas/:id</code>. El primero deberá renderizar la vista <code>tareas_listado.njk</code>, que deberás crear, con un listado con los nombres de las tareas. Al hacer click en cada una de ellas se llamará al segundo <em>handler</em>, que renderizará la vista <code>tareas_ficha.njk</code>, que también deberás implementar, con la ficha de cada tarea, indicando su nombre, prioridad y fecha.</p>
+<p>Finalmente, haz que la ruta raíz redireccione al listado de tareas.
+<strong>7.</strong> Dentro del módulo <code>web</code>, implementa las rutas que nos permitan modificar y borrar una tarea. Para ello, previamente dentro de la vista <code>tareas_listado.njk</code> añade un botón a cada tarea que te permita seleccionar la tarea a borrar o modificar. Una vez creado el botón renderiza la vista que te permita modificarla <code>tareas_editar.njk</code>.</p>
+</blockquote>
+<h3 id="346-autenticaci%C3%B3n-en-nestjs">3.4.6. Autenticación en Nest.js</h3>
+<p>En este apartado, vamos a ver los dos mecanismos vistos anteriormente para autenticar a los usuarios que acceden a nuestros servicios.</p>
+<h4 id="3461-autenticaci%C3%B3n-basada-en-tokens-usando-jwt">3.4.6.1 Autenticación basada en tokens usando <a href="https://jwt.io/">JWT</a>.</h4>
+<p>En el tema 3.2 vimos cómo usar la autenticación para loguearnos a nuestras aplicaciones. En este punto vamos a ver cómo usar la autenticación en Nestjs en el lado del servidor usando <a href="https://github.com/nestjs/jwt">JSON Web Token</a>, mecanismo de autenticación que permita ser aplicado a aplicaciones cliente (no de navegador), como por ejemplo las aplicaciones de escritorio, o móviles.</p>
+<p>La autenticación basada en tokens es un método mediante el cual nos aseguramos de que cada petición a un servidor viene acompañada por un token firmado, que contiene los datos necesarios para verificar que el cliente ya ha sido validado previamente.</p>
+<p>Para poder generar un token utilizaremos la librería <em>passport-jwt</em>:</p>
+<pre class="hljs"><code><div>npm install --save @nestjs/jwt passport-jwt
+npm install --save-dev @types/passport-jwt
+</div></code></pre>
+<p>El paquete @nestjs/jwt que hemos instalado es el que tiene las utilidades para manipular JWT. El paquete passport-jwt es el encargado de implementar la estrategia JWT y @types/passport-jwt proporciona las definiciones de tipos de TypeScript.</p>
+<p>Con el objetivo de encapsular las operaciones de autenticación, vamos a generar un módulo y su servicio:</p>
+<pre class="hljs"><code><div>nest g module auth
+nest g service auth
+</div></code></pre>
+<p>En el fichero <code>auth.service.ts</code> añadiremos el método <code>login</code>, importando el servicio <code>JwtService</code>. Los usuarios los tendremos por ahora en un array predefinido.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { HttpStatus, Injectable, UnauthorizedException } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { JwtService } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/jwt'</span>;
+<span class="hljs-keyword">import</span> { LoginDto } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dto/login-dto'</span>;
+
+<span class="hljs-comment">// Este array de usuarios debería estar en la BBDD con la contraseña CIFRADA</span>
+<span class="hljs-keyword">const</span> usuarios = [
+  { usuario: <span class="hljs-string">'rosa'</span>, password: <span class="hljs-string">'rosa'</span>, rol: <span class="hljs-string">'admin'</span> },
+  { usuario: <span class="hljs-string">'pepe'</span>, password: <span class="hljs-string">'pepe111'</span>, rol: <span class="hljs-string">'normal'</span> }
+];
+
+<span class="hljs-meta">@Injectable</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AuthService {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> jwtService: JwtService</span>) { }
+
+  <span class="hljs-keyword">async</span> login(user: LoginDto) {
+    <span class="hljs-keyword">const</span> usuario = usuarios.find(<span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> u.usuario === user.usuario &amp;&amp; u.password === user.password);
+    <span class="hljs-keyword">if</span> (usuario) {
+      <span class="hljs-keyword">const</span> payload = { sub: usuario.usuario };
+      <span class="hljs-keyword">return</span> {
+        access_token: <span class="hljs-keyword">this</span>.jwtService.sign(payload),
+      };
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnauthorizedException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: <span class="hljs-string">'Usuario o password incorrecto'</span>,
+      });
+    }
+  }
+}
+</div></code></pre>
+<p>Como vemos, estamos usando la librería @nestjs/jwt que nos permite usar el método sign() para generar nuestro token JWT, devolviendolo en la respuesta. Hemos elegido la propiedad sub (subject) donde el estándar JWT define que se guardará aquello que identifique (en la base de datos) de nuestro usuario. El siguiente paso será actualizar AuthModule para importar las nuevas dependencias y configurar JwtModule.</p>
+<p>Primero, crearemos un archivo de constantes (constants.ts) dentro de auth, donde almacenaremos la clave secreta para firmar el token digitalmente y que no pueda ser alterado por terceros:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> jwtConstants = {
+    secret: <span class="hljs-string">'WEr34fwGter'</span>,
+};
+</div></code></pre>
+<p>El siguiente paso será abrir auth.module.ts en el directorio auth para configurar <code>JwtModule</code>, llamando al método <code>register()</code> pasándole las opciones del token:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Module } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { JwtModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/jwt'</span>;
+<span class="hljs-keyword">import</span> { PassportModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/passport'</span>;
+<span class="hljs-keyword">import</span> { AuthController } <span class="hljs-keyword">from</span> <span class="hljs-string">'./auth.controller'</span>;
+<span class="hljs-keyword">import</span> { AuthService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./auth.service'</span>;
+<span class="hljs-keyword">import</span> { jwtConstants } <span class="hljs-keyword">from</span> <span class="hljs-string">'./constants'</span>;
+<span class="hljs-keyword">import</span> { JwtStrategy } <span class="hljs-keyword">from</span> <span class="hljs-string">'./jwt.strategy'</span>;
+
+<span class="hljs-meta">@Module</span>({
+  controllers: [AuthController],
+  imports: [
+    PassportModule,
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: <span class="hljs-string">'30d'</span> } <span class="hljs-comment">// El token expira en 30 días</span>
+    })
+  ],
+  providers: [AuthService, JwtStrategy]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AuthModule { }
+
+</div></code></pre>
+<p>Una vez hecho esto, debemos actualizar la ruta de login para que devuelva el resultado de la llamada al servicio de autenticación:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Body, Controller, HttpStatus, Post, UnauthorizedException, ValidationPipe } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { AuthService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./auth.service'</span>;
+<span class="hljs-keyword">import</span> { LoginDto } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dto/login-dto'</span>;
+
+<span class="hljs-meta">@Controller</span>(<span class="hljs-string">'auth'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AuthController {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> readonly authService: AuthService</span>) {}
+
+    <span class="hljs-meta">@Post</span>(<span class="hljs-string">'login'</span>)
+    <span class="hljs-keyword">async</span> login(
+      <span class="hljs-meta">@Body</span>(<span class="hljs-keyword">new</span> ValidationPipe({ whitelist: <span class="hljs-literal">true</span> }))
+      userDto: LoginDto
+    ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.authService.login(userDto);
+    }
+}
+</div></code></pre>
+<p>Como se puede observar, se ha utilizado una clase (LoginDto) que representa los datos del login que se van a recibir: <em>usuario</em> y <em>password</em>. Con <code>ValidationPipe</code> hacemos también una validación de los campos que nos llegan. Los decoradores para validar los campos se encuentran en la clase <strong>LoginDto</strong>. Para usar validaciones debemos tener instalada la librería <strong>class_validator</strong> <code>npm i class_validator</code>. En nuestro caso, verificamos que los 2 campos tengan valores de tipo string y que no estén vacíos.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {
+    IsNotEmpty, IsString
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'class-validator'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LoginDto {
+    <span class="hljs-meta">@IsNotEmpty</span>()
+    <span class="hljs-meta">@IsString</span>()
+    usuario: <span class="hljs-built_in">string</span>;
+    <span class="hljs-meta">@IsNotEmpty</span>()
+    <span class="hljs-meta">@IsString</span>()
+    password: <span class="hljs-built_in">string</span>;
+}
+</div></code></pre>
+<p>Si algún campo no cumple la validación, Nest devuelve automáticamente una respuesta de error 400 (Bad Request) indicando los campos que no han sido validados.</p>
+<p><strong>Validación de rutas</strong></p>
+<p>Para proteger las rutas que requieren credenciales de login para acceder (token), debemos crear un guardian derivado de la clase <strong>AuthGuard</strong> que utilice 'jwt', es decir, la clase JWTStrategy que hemos creado antes para validar el token y dejarnos acceder al servicio en caso de ser válido (o devolver un error 401).</p>
+<p><code>nest g guard auth/jwt-auth --flat</code> (la opción --flat es para no crear una carpeta)</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Injectable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { AuthGuard } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/passport'</span>;
+
+<span class="hljs-meta">@Injectable</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> JwtAuthGuard <span class="hljs-keyword">extends</span> AuthGuard(<span class="hljs-string">'jwt'</span>) {}
+</div></code></pre>
+<p>Una vez creado esto, debemos indicar qué métodos de los controladores necesitarán token para acceder a ellos. Esto se hace con el decorador <strong>@UseGuards(JwtAuthGuard)</strong>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Controller, Get, Param, Put, Body, Delete, Post, UseGuards } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/common'</span>;
+<span class="hljs-keyword">import</span> { JwtAuthGuard } <span class="hljs-keyword">from</span> <span class="hljs-string">'src/auth/jwt-auth.guard'</span>;
+<span class="hljs-keyword">import</span> { TareaDto } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dto/tarea-dto/tarea-dto'</span>;
+<span class="hljs-keyword">import</span> { TareaService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tarea.service'</span>;
+
+<span class="hljs-meta">@Controller</span>(<span class="hljs-string">'tarea'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TareaController {
+    ...
+    <span class="hljs-comment">// POST /tarea</span>
+    <span class="hljs-meta">@Post</span>()
+    <span class="hljs-meta">@UseGuards</span>(JwtAuthGuard)
+    <span class="hljs-keyword">async</span> crear(<span class="hljs-meta">@Body</span>() crearTareaDto: TareaDto) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tareaService.insertar(crearTareaDto);
+    }
+    ...     
+}
+</div></code></pre>
+<p>A partir de este momento solo se podrá acceder a estas rutas incluyendo el token generado en el login en la cabecera <strong>Authorization</strong> de la petición, con el prefijo <strong>Bearer</strong>: <code>Authorization: Bearer TOKEN_JWT</code>.</p>
+<h4 id="3462-autenticaci%C3%B3n-basada-en-sesiones">3.4.6.2 Autenticación basada en sesiones</h4>
+<p>Como sabemos, la autenticación basada en sesiones permite autenticar usuarios en aplicaciones web basadas en navegadores, y &quot;recordar&quot; el usuario que se validó en sus sucesivas visitas. Para ello, utilizan las <strong>sesiones</strong>, que comprenden un conjunto de interacciones de un cliente con un servidor en un determinado período. Cuando abrimos un navegador y accedemos a una web, automáticamente se inicia la sesión en dicha web, y mientras no cerremos el navegador o la sesión manualmente, la aplicación recuerda (o puede recordar, si quiere) que ya hemos accedido, y los pasos que hemos ido dando en la actual sesión.</p>
+<p>En este apartado seguiremos utilizando el mismo ejemplo de contactos, sobre el que probaremos dicha autenticación.</p>
+<h5 id="34621-definici%C3%B3n-de-sesiones-en-nestjs">3.4.6.2.1. Definición de sesiones en Nest.js</h5>
+<p>Para poder trabajar con sesiones en Nest, instalaremos el módulo <em>express-session</em> que vimos anteriormente. Es un <em>middleware</em> que permite, en cada petición que requiera una comprobación, determinar si el usuario ya se ha validado y con qué credenciales, antes de dejarle acceder a lo que busca o no.</p>
+<p>Así que lo primero que haremos será instalar el módulo:</p>
+<pre class="hljs"><code><div>npm install express-session
+</div></code></pre>
+<p>Después, lo incorporamos a nuestro servidor Express junto con el resto de módulos:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> session = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express-session'</span>);
+...
+</div></code></pre>
+<p>A continuación, configuramos la sesión dentro de la aplicación Express:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> app = express();
+...
+app.use(session({
+    secret: <span class="hljs-string">'1234'</span>, <span class="hljs-comment">// Clave para cifrar la sesión</span>
+    resave: <span class="hljs-literal">true</span>, <span class="hljs-comment">// Refresca la sesión en cada nuevo acceso</span>
+    saveUninitialized: <span class="hljs-literal">false</span>, <span class="hljs-comment">// Guarda las sesiones aun sin haberse completado</span>
+    expires: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.now() + (<span class="hljs-number">30</span> * <span class="hljs-number">60</span> * <span class="hljs-number">1000</span>)) <span class="hljs-comment">// La sesión expirará en 30minutos</span>
+}));
+</div></code></pre>
+<h5 id="34622-validaci%C3%B3n">3.4.6.2.2. Validación</h5>
+<p>En todo proceso de autenticación debe haber una validación previa, donde el usuario envíe sus credenciales y se cotejen con las existentes en la base de datos, antes de dejarle acceder. Por simplicidad, vamos a cargar los usuarios en un array, con su nombre de usuario y su password, pero sabéis que los usuarios deberían estar en una tabla de nuestra base de datos con la contraseña cifrada:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> usuarios = [
+    { usuario: <span class="hljs-string">'nacho'</span>, password: <span class="hljs-string">'12345'</span> },
+    { usuario: <span class="hljs-string">'pepe'</span>, password: <span class="hljs-string">'pepe111'</span> }
+];
+</div></code></pre>
+<p>Ahora tendríamos que definir el servicio de login:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Post</span>(<span class="hljs-string">'login'</span>)
+<span class="hljs-keyword">async</span> login(<span class="hljs-meta">@Res</span>() res, <span class="hljs-meta">@Req</span>() req, <span class="hljs-meta">@Body</span>() body) {
+    <span class="hljs-keyword">let</span> usu = body.usuario;
+    <span class="hljs-keyword">let</span> pass = body.password;
+    <span class="hljs-keyword">let</span> existe = aUsuarios.filter(<span class="hljs-function"><span class="hljs-params">usuario</span> =&gt;</span> usuario.usuario == usu &amp;&amp; usuario.password == pass);
+    
+    <span class="hljs-keyword">if</span> (existe.length &gt; <span class="hljs-number">0</span>) {
+        req.session.usuario = existe[<span class="hljs-number">0</span>].usuario;
+        <span class="hljs-keyword">this</span>.listar(res);
+    } <span class="hljs-keyword">else</span> {
+        res.render(<span class="hljs-string">'iniciarSesion'</span>, { error: <span class="hljs-string">"Error usuario o contraseña incorrecta"</span> });
+    }
+}
+</div></code></pre>
+<h5 id="34623-autenticaci%C3%B3n">3.4.6.2.3. Autenticación</h5>
+<p>Una vez validado el usuario, debemos comprobar en cada una de las rutas que queramos proteger, si el usuario ha sido logueado o no. Para ello, a cada una de esos recursos deberemos comprobar si existe la sessión haciendo uso del decorador <code>@Session</code>. Veamos un ejemplo donde sólo aquellos usuarios que han sido logueados podrán crear un contacto:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Get</span>(<span class="hljs-string">'contactos/nuevo'</span>)
+<span class="hljs-keyword">async</span> crearContacto(<span class="hljs-meta">@Res</span>() res, <span class="hljs-meta">@Session</span>() session) {
+    <span class="hljs-keyword">if</span>(!session.usuario) <span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'login'</span>, {error: <span class="hljs-string">"El usuario debe estar logueado"</span>});
+    <span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'contactos_nuevo'</span>);
+}
+</div></code></pre>
+<p>Para poder acceder a la sesión desde las vistas, debemos definir un middleware que asocie la sesión con los recursos de la vista:</p>
+<pre class="hljs"><code><div>app.use(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {
+    res.locals.session = req.session;
+    next();
+});
+</div></code></pre>
+<p>Después, podemos acceder a esta sesión desde las vistas, a través de la variable <code>session</code> que hemos definido en la respuesta (<code>res.locals</code>). Por ejemplo, así podríamos ver si un usuario está ya logueado, para mostrar o no el botón de &quot;Login&quot; en el menú:</p>
+<pre class="hljs"><code><div>{% <span class="hljs-keyword">if</span> (session and session.usuario) %}
+    &lt;a <span class="hljs-keyword">class</span>=<span class="hljs-string">"btn btn-dark"</span> href=<span class="hljs-string">"/web/logout"</span>&gt;Logout&lt;<span class="hljs-regexp">/a&gt;
+{% else %}
+    &lt;a class="btn btn-dark" href="/</span>web/login<span class="hljs-string">"&gt;Login&lt;/a&gt;
+{% endif %}
+</span></div></code></pre>
+<p>Y con esto, ya sólo nos quedaría el apartado de cerrar sesión, que consistirá en destruir la sesión de dicho usuario, redirigiendo a posteriori a otro recurso.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Get</span>(<span class="hljs-string">'logout'</span>)
+<span class="hljs-keyword">async</span> cerrarSession(<span class="hljs-meta">@Res</span>() res, <span class="hljs-meta">@Req</span>() req) {
+    req.session.destroy();
+    <span class="hljs-keyword">this</span>.listar(res);
+}
+</div></code></pre>
+<blockquote>
+<p><strong>Ejercicios propuestos:</strong></p>
+<p><strong>1.</strong> A partir del proyecto creado de &quot;<strong>tareas-nest</strong>&quot;, vamos a añadir ahora autenticación basada en sesiones. Instala el <em>middleware express-session</em> en el proyecto, y configúralo como en el ejemplo visto antes. Define a mano en el servidor principal un array con nombres y passwords de usuarios autorizados, y protege las rutas que permitan hacer cualquier modificación sobre el catálogo de tareas. En concreto, sólo los usuarios validados podrán:</p>
+<ul>
+<li>Ver el formulario de inserción de tareas e insertar tareas (enviar el formulario)</li>
+<li>Borrar tareas</li>
+<li>Ver el formulario de edición de tareas y editar tareas (enviar el formulario)</li>
+</ul>
+<p>Añade para ello una vista <code>login.njk</code> al conjunto de vistas de la aplicación. Puedes emplear el mismo formulario de login que en el ejemplo, y también añade las dos rutas para mostrar el formulario y para recoger los datos y validar el usuario. En caso de validación exitosa, se renderizará la vista del listado de tareas. En caso contrario, el formulario de login con un mensaje de error, como en el ejemplo proporcionado.</p>
+<p>Finalmente, añade también una función de <em>logout</em> al menú de la aplicación, que sólo será visible si el usuario ya está validado, y que permitirá destruir su sesión y redirigir al listado de tareas.</p>
+</blockquote>
+
+</body>
+</html>
