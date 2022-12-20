@@ -15,7 +15,7 @@
 
     // pdf only. HTML template for the print header.
     "markdown-pdf.headerTemplate":
-    "<div style=\"margin-top: 20px; width: 100%; border-bottom: 1px solid; border-color:#CCC; color: #CCC; font-size: 10px; margin-left: 1cm; margin-right: 1cm;\"><div style=\"float:left;\">Despliegue de Aplicaciones Web</div> <div style=\"float:right;\">Nacho Iborra, May Calle.</div></div>",
+    "<div style=\"margin-top: 20px; width: 100%; border-bottom: 1px solid; border-color:#CCC; color: #CCC; font-size: 10px; margin-left: 1cm; margin-right: 1cm;\"><div style=\"float:left;\">Despliegue de Aplicaciones Web</div> <div style=\"float:right;\">Rosa Medina, May Calle.</div></div>",
 
     // pdf only. HTML template for the print footer.
     "markdown-pdf.footerTemplate":
